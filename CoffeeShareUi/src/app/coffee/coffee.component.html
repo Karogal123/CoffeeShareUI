@@ -1,0 +1,25 @@
+<p>coffee works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Manufacturer</th>
+            <th>CountryId</th>
+            <th>BeansProcessing</th>
+            <th>DegreeOfRoasting</th>
+            <th>BeanType</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of CoffeeList">
+            <td>{{dataItem.id}}</td>
+            <td>{{dataItem.name}}</td>
+            <td>{{dataItem.manufacturer.name}}</td>
+            <td>{{dataItem.country.name}}</td>
+            <td>{{dataItem.beansProcessing}}</td>
+            <td>{{dataItem.degreeOfRoasting}}</td>
+            <td>{{dataItem.beanType}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -6,11 +6,11 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  readonly ApiUrl = "http://localhost:44331/api"
+  readonly ApiUrl = "https://localhost:44331"
   constructor(private http: HttpClient) { }
 
   getCoffees() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Coffees');
+    return this.http.get<any>(this.ApiUrl + '/Coffee/');
   }
   getCoffeeById(val:any){
     return this.http.get<any>(this.ApiUrl + '/Coffees/', val);
@@ -80,5 +80,7 @@ export class SharedService {
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
+  //----RecipesScore
+  
 }
 
