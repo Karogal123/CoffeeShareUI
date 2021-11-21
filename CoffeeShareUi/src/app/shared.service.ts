@@ -10,7 +10,7 @@ export class SharedService {
   constructor(private http: HttpClient) { }
 
   getCoffees() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Coffee/');
+    return this.http.get<any>(this.ApiUrl + '/Coffee');
   }
   getCoffeeById(val:any){
     return this.http.get<any>(this.ApiUrl + '/Coffees/', val);
@@ -81,6 +81,11 @@ export class SharedService {
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
   //----RecipesScore
-  
+  LogIn(email:any, password:any){
+    return this.http.post(this.ApiUrl + '/users/Login', email, password);
+  }
+  Register(email:any, password:any){
+    return this.http.post(this.ApiUrl + '/users/Register', email, password);
+  }
 }
 
