@@ -13,16 +13,16 @@ export class SharedService {
     return this.http.get<any>(this.ApiUrl + '/Coffee');
   }
   getCoffeeById(val:any){
-    return this.http.get<any>(this.ApiUrl + '/Coffees/', val);
+    return this.http.get<any>(this.ApiUrl + '/Coffee/', val);
   }
   createCoffee(val:any) {
-    return this.http.post(this.ApiUrl + '/Coffees', val);
+    return this.http.post(this.ApiUrl + '/Coffee', val);
   }
   deleteCoffee(val:any){
-    return this.http.delete(this.ApiUrl + '/Coffees/', val);
+    return this.http.delete(`${this.ApiUrl}/Coffee/${val.id}`, val.id);
   }
   updateCoffee(val:any){
-    return this.http.put(`${this.ApiUrl}/Coffees/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/Coffee/${val.id}`, val);
   }
   //----Countries
   getCountries() : Observable<any[]> {

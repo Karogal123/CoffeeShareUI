@@ -1,0 +1,19 @@
+<div class="form-froup row">
+
+    
+    <div class ="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeName" placeholder="Enter game name">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeManufacturerId" placeholder="Enter game description">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeCountryId" placeholder="Enter how many games are in stock">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeBeansProcessing" placeholder="Enter fee if customer destroys the game">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeDegreeOfRoasting" placeholder="Enter fee if customer destroys the game">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeBeanType" placeholder="Enter fee if customer destroys the game">
+        <input type="text" class="form-control" [(ngModel)]="CoffeeImgUrl" placeholder="Enter fee if customer destroys the game">
+    </div>
+</div>
+<button (click)="addCoffee()" *ngIf="coffee.id==0" class="btn btn-primary">
+    Add
+</button>
+<button (click)="updateCoffee()" *ngIf="coffee.id!=0" class="btn btn-primary">
+    Update
+</button>
