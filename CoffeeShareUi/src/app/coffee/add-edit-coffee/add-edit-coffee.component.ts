@@ -16,6 +16,8 @@ export class AddEditCoffeeComponent implements OnInit {
   CoffeeDegreeOfRoasting: string ="";
   CoffeeBeanType: string ="";
   CoffeeImgUrl: string ="";
+  CountryList: any[] = [];
+  ManufacturerList: any[] = [];
   constructor(private service : SharedService) { }
 
   ngOnInit(): void {
@@ -27,7 +29,10 @@ export class AddEditCoffeeComponent implements OnInit {
     this.CoffeeDegreeOfRoasting = this.coffee.degreeOfRoasting;
     this.CoffeeBeanType = this.coffee.beanType;
     this.CoffeeImgUrl = this.coffee.imgUrl;
+    this.getCountryList();
+    this.getManufacturerList();
   }
+
   addCoffee(){
     var val = {
       id:this.CoffeeId,
@@ -57,5 +62,15 @@ export class AddEditCoffeeComponent implements OnInit {
     this.service.updateCoffee(val).subscribe(res=>{
       alert(res.toString());
     });
+  }
+  getCountryList(){
+    this.service.getCountries().subscribe(data => {
+      this.CountryList = data;
+    })
+  }
+  getManufacturerList(){
+    this.service.getManufacturers().subscribe(data => {
+      this.ManufacturerList = data;
+    })
   }
 }
