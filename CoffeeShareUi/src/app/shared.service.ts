@@ -49,7 +49,7 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/Manufacturers', val);
   }
   deleteManufacturer(val:any){
-    return this.http.delete(this.ApiUrl + '/Manufacturers/', val);
+    return this.http.delete(`${this.ApiUrl}/Manufacturers/${val.id}`, val.id);
   }
   updateManufactutrer(val:any){
     return this.http.put(`${this.ApiUrl}/Manufacturers/${val.id}`, val);

@@ -13,7 +13,7 @@ data-keyboard="false">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="closeClick()">
+          (click)="closeClick()" (click)="refreshCoffeeList()">
         </button>
         </div>
         <div class="modal-body">
@@ -26,8 +26,8 @@ data-keyboard="false">
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
             <th>Manufacturer</th>
+            <th>Name</th>
             <th>CountryId</th>
             <th>BeansProcessing</th>
             <th>DegreeOfRoasting</th>
@@ -37,8 +37,8 @@ data-keyboard="false">
     </thead>
     <tbody>
         <tr *ngFor="let dataItem of CoffeeList">
-            <td>{{dataItem.name}}</td>
             <td>{{dataItem.manufacturer.name}}</td>
+            <td>{{dataItem.name}}</td>
             <td>{{dataItem.country.name}}</td>
             <td>{{dataItem.beansProcessing}}</td>
             <td>{{dataItem.degreeOfRoasting}}</td>

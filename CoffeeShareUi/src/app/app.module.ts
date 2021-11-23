@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
-import { AddEditCoffeeComponent } from './coffee/add-edit-coffee/add-edit-coffee.component'
+import { AddEditCoffeeComponent } from './coffee/add-edit-coffee/add-edit-coffee.component';
+import { AddEditManufacturerComponent } from './manufacturer/add-edit-manufacturer/add-edit-manufacturer.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddEditCoffeeComponent } from './coffee/add-edit-coffee/add-edit-coffee
     HeaderComponent,
     RegisterComponent,
     ManufacturerComponent,
-    AddEditCoffeeComponent
+    AddEditCoffeeComponent,
+    AddEditManufacturerComponent
   ],
   imports: [
     BrowserModule,
