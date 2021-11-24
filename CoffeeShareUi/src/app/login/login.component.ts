@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -16,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.userForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required, Validators.minLength(6), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!()*]).{6,}$")]
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 
@@ -29,12 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.subbmited = true;
-    if(this.userForm.invalid){
-      return;
-    }
     this.user = this.userForm.value;
-    this.userService.Register(this.user).subscribe(res => { console.log(res)});
+    this.userService.LogIn(this.user).subscribe(res => { console.log(res)});
   }
 
 }

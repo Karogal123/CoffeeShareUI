@@ -14,7 +14,8 @@ import { HeaderComponent } from './header/header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { AddEditCoffeeComponent } from './coffee/add-edit-coffee/add-edit-coffee.component';
-import { AddEditManufacturerComponent } from './manufacturer/add-edit-manufacturer/add-edit-manufacturer.component'
+import { AddEditManufacturerComponent } from './manufacturer/add-edit-manufacturer/add-edit-manufacturer.component';
+import { AddEditRecipeComponent } from './recipe/add-edit-recipe/add-edit-recipe.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddEditManufacturerComponent } from './manufacturer/add-edit-manufactur
     RegisterComponent,
     ManufacturerComponent,
     AddEditCoffeeComponent,
-    AddEditManufacturerComponent
+    AddEditManufacturerComponent,
+    AddEditRecipeComponent
   ],
   imports: [
     BrowserModule,
