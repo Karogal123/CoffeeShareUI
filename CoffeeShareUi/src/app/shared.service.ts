@@ -70,7 +70,7 @@ export class SharedService {
   updateRecipe(val:any){
     return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val);
   }
-  //----RecipesScore
+  //----RecipesScores
   getRecipesScoresForRecipe(val: any){
     return this.http.get<any>(this.ApiUrl + '/RecipesScores', val)
   }
@@ -79,6 +79,35 @@ export class SharedService {
   }
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
+  }
+  //----RecipesTags
+  getRecipeTagsForRecipe(val: any){
+    return this.http.get<any>(this.ApiUrl + '/RecipesTags', val)
+  }
+  createRecipeTag(val:any){
+    return this.http.post(this.ApiUrl + '/RecipesTags/', val);
+  }
+  updateRecipeTag(val:any){
+    return this.http.put(`${this.ApiUrl}/RecipesTags/${val.id}`, val);
+  }
+  deleteRecipeTag(val:any){
+    return this.http.delete(this.ApiUrl + '/RecipesTags/', val);
+  }
+  //----Tags
+  getTags() : Observable<any[]> {
+    return this.http.get<any>(this.ApiUrl + '/Recipes')
+  }
+  getTagById(val:any){
+    return this.http.get<any>(this.ApiUrl + '/Recipes/', val);
+  }
+  createTag(val:any) {
+    return this.http.post(this.ApiUrl + '/Recipes', val);
+  }
+  deleteTAg(val:any){
+    return this.http.delete(this.ApiUrl + '/Recipes/', val);
+  }
+  updateTag(val:any){
+    return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val);
   }
 }
 
