@@ -6,23 +6,23 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  readonly ApiUrl = "http://localhost:44331/api"
+  readonly ApiUrl = "https://localhost:44331"
   constructor(private http: HttpClient) { }
 
   getCoffees() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Coffees');
+    return this.http.get<any>(this.ApiUrl + '/Coffee');
   }
   getCoffeeById(val:any){
-    return this.http.get<any>(this.ApiUrl + '/Coffees/', val);
+    return this.http.get<any>(this.ApiUrl + '/Coffee/', val);
   }
   createCoffee(val:any) {
-    return this.http.post(this.ApiUrl + '/Coffees', val);
+    return this.http.post(this.ApiUrl + '/Coffee', val);
   }
   deleteCoffee(val:any){
-    return this.http.delete(this.ApiUrl + '/Coffees/', val);
+    return this.http.delete(`${this.ApiUrl}/Coffee/${val.id}`, val.id);
   }
   updateCoffee(val:any){
-    return this.http.put(`${this.ApiUrl}/Coffees/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/Coffee/${val.id}`, val);
   }
   //----Countries
   getCountries() : Observable<any[]> {
@@ -49,7 +49,7 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/Manufacturers', val);
   }
   deleteManufacturer(val:any){
-    return this.http.delete(this.ApiUrl + '/Manufacturers/', val);
+    return this.http.delete(`${this.ApiUrl}/Manufacturers/${val.id}`, val.id);
   }
   updateManufactutrer(val:any){
     return this.http.put(`${this.ApiUrl}/Manufacturers/${val.id}`, val);
@@ -80,6 +80,7 @@ export class SharedService {
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
+<<<<<<< HEAD:CoffeeShareUi/src/app/shared.service.ts
   //----RecipesTags
   getRecipeTagsForRecipe(val: any){
     return this.http.get<any>(this.ApiUrl + '/RecipesTags', val)
@@ -108,6 +109,14 @@ export class SharedService {
   }
   updateTag(val:any){
     return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val);
+=======
+  //----RecipesScore
+  LogIn(email:any, password:any){
+    return this.http.post(this.ApiUrl + '/users/Login', email, password);
+  }
+  Register(email:any, password:any){
+    return this.http.post(this.ApiUrl + '/users/Register', email, password);
+>>>>>>> b111cde86722c86fc775a05b66d1aaeeb54a1d86:CoffeeShareUi/src/app/shared/shared.service.ts
   }
 }
 

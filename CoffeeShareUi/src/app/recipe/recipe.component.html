@@ -1,0 +1,39 @@
+
+<button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+(click)="addClick()" 
+data-backdrop="static" 
+data-keyboard="false">
+    Add Coffee
+  </button>
+  
+  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()" (click)="refreshRecipeList()">
+        </button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-recipe [recipe]="recipe" *ngIf="ActiveAddEdditRecipe"></app-add-edit-recipe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="wrapper">
+
+	<header>
+		<h1>Recipe</h1>
+	</header>
+		
+<section class="columns" *ngFor="let recipe of RecipeList">	
+	<div class="column">
+		<h2>{{recipe.name}}</h2>
+		<p>{{recipe.recipeBody}}</p>
+	</div>
+</section>	
+	
+
+</div>
