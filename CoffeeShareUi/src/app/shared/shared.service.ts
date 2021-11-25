@@ -81,11 +81,5 @@ export class SharedService {
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
   //----RecipesScore
-  LogIn(email:any, password:any){
-    return this.http.post(this.ApiUrl + '/users/Login', email, password);
-  }
-  Register(email:any, password:any){
-    return this.http.post(this.ApiUrl + '/users/Register', email, password);
-  }
 }
 
