@@ -8,9 +8,14 @@ import { UserService } from 'src/app/shared/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public isUserAuthenticated!: boolean;
-  constructor(private userService: UserService, private _router: Router) { }
-
+  public isUserAuthenticated: boolean = false;
+  constructor(private userService: UserService, private _router: Router) {
+    this.userService.authChanged
+    .subscribe(res => {
+      this.isUserAuthenticated = res;
+    })
+  }
+  
   ngOnInit(): void {
     this.userService.authChanged
     .subscribe(res => {

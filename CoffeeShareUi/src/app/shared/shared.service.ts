@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';    
+import {HttpClient, HttpHeaders} from '@angular/common/http';    
 import {Observable} from 'rxjs';    
 
 @Injectable({
@@ -30,7 +30,7 @@ export class SharedService {
   }
   //----Comments
   getCommentsForRecipe(val:any){
-    return this.http.get<any>(this.ApiUrl + '/Comments/', val);
+    return this.http.get<any[]>(this.ApiUrl + '/Comments/', {params: {recipeId: val}});
   }
   createComment(val:any){
     return this.http.post(this.ApiUrl + '/Comments', val);
@@ -59,10 +59,10 @@ export class SharedService {
     return this.http.get<any>(this.ApiUrl + '/Recipes')
   }
   getRecipeById(val:any){
-    return this.http.get<any>(this.ApiUrl + '/Recipes/', val);
+    return this.http.get<any>(`${this.ApiUrl}/Recipes/GetById/${val}`);
   }
   createRecipe(val:any) {
-    return this.http.post(this.ApiUrl + '/Recipes', val);
+    return this.http.post(this.ApiUrl + '/Recipes', val, this.generateHeaders());
   }
   deleteRecipe(val:any){
     return this.http.delete(this.ApiUrl + '/Recipes/', val);
@@ -81,5 +81,18 @@ export class SharedService {
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
   //----RecipesScore
+
+
+
+
+
+  private generateHeaders = () => {
+    return {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }),
+    };
+  }; 
 }
 

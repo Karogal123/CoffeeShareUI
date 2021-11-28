@@ -18,6 +18,14 @@
         <a class="nav-link" [routerLink]="['/privacy']" routerLinkActive="active" 
           [routerLinkActiveOptions]="{exact: true}"> Privacy </a>
       </li>
+      <li class="nav-item" *ngIf="isUserAuthenticated == false">
+        <a class="nav-link"[routerLink]="['/authentication/register']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Register</a>
+      </li>
+      <li class="nav-item" *ngIf="isUserAuthenticated == false">
+        <a class="nav-link"[routerLink]="['/authentication/login']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Login</a>
+      </li>
       <li *ngIf="isUserAuthenticated" class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>

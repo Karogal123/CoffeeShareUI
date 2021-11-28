@@ -21,7 +21,7 @@ export class UserService {
     return this._http.post<RegistrationResponse> (this.createCompleteRoute(route, this._envUrl.urlAddress), body);
   }
   public loginUser = (route: string, body: UserForAuthentication) => {
-    return this._http.post<AuthResponse>(this.createCompleteRoute(route, this._envUrl.urlAddress), body);
+    return this._http.post<AuthResponse>(this.createCompleteRoute(route, this._envUrl.urlAddress), body, );
   }
   private createCompleteRoute = (route: string, envAddress: string) => {
     return `${envAddress}/${route}`;
@@ -36,6 +36,20 @@ export class UserService {
   public isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("token");
  
-    return token && !this._jwtHelper.isTokenExpired(token) || false;
+    return !token && !this._jwtHelper.isTokenExpired(token!);
   }
+  private generateHeaders = () => {
+    return {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }),
+    };
+  };
+  public isUserAdmin = (): boolean => {
+    var token = localStorage.getItem("token");
+    const decodedToken = this._jwtHelper.decodeToken(token!);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    return role === 'Admin';
+  } 
 }

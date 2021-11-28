@@ -1,0 +1,11 @@
+<h2>Name : {{recipe.name}}</h2>
+<h2>RecipeBody: {{recipe.recipeBody}}</h2>
+<h2>IntendedUse: {{recipe.intendedUse}}</h2>
+<h2>CoffeeId: {{recipe.coffeeId}}</h2>
+<h2>UserId: {{recipe.userId}}</h2>
+<h2>UserName: {{recipe.user.email | removeDomainFromEmail}}</h2>
+
+<div class="column" *ngFor="let comment of comments">
+    <h1>{{comment.user.email | removeDomainFromEmail}}</h1>
+    <h1>{{comment.commentBody}}</h1>
+</div>

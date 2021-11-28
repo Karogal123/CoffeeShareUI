@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-recipe',
@@ -10,12 +11,17 @@ export class RecipeComponent implements OnInit {
   ModalTitle:string="";
   recipe: any;
   ActiveAddEdditRecipe:boolean=false;
-  constructor(private service:SharedService) { }
+  public isUserAuthenticated: boolean = false;
+  constructor(private service:SharedService, private userService: UserService) { }
 
   RecipeList: any = [];
   
   ngOnInit(): void {
     this.refreshRecipeList();
+    this.userService.authChanged
+    .subscribe(res => {
+      this.isUserAuthenticated = res;
+    })
   }
 
   refreshRecipeList(){

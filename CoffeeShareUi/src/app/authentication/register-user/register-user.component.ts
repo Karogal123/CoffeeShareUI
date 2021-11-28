@@ -12,6 +12,8 @@ import { UserService } from 'src/app/shared/user.service';
 export class RegisterUserComponent implements OnInit {
   userForm! : FormGroup;
   user! : UserForRegistration;
+  errorMessage: string ="";
+  public showError: boolean = false;
   submitted = false;
   constructor(private formBuilder: FormBuilder, private userService: UserService, private _router: Router) { }
 
@@ -32,18 +34,17 @@ export class RegisterUserComponent implements OnInit {
   }
 
   onSubmit(){
-    this.submitted = true;
-    if(this.userForm.invalid){
-      return;
-    }
+    const formValues = { ...this.userForm };
+
     this.user = this.userForm.value;
+
     this.userService.registerUser("users/register", this.user)
-    .subscribe(data =>{
+    .subscribe(_ => {
       console.log("Successful registration");
-  },
-  error =>{
-    console.log(error.error.errors);
-  });
-  this._router.navigate(["/authentication/login"]);
+    },
+    error => {
+      this.errorMessage = error;
+      this.showError = true;
+    })
   }
 } 

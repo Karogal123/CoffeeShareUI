@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,10 @@ import { AddEditManufacturerComponent } from './manufacturer/add-edit-manufactur
 import { AddEditRecipeComponent } from './recipe/add-edit-recipe/add-edit-recipe.component'
 import { JwtModule } from '@auth0/angular-jwt';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ErrorHandlerService } from './shared/error-handler.service';
+import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
+import { RemoveDomainFromEmailPipe } from './pipes/remove-domain-from-email.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -33,6 +37,9 @@ export function tokenGetter() {
     AddEditManufacturerComponent,
     AddEditRecipeComponent,
     PrivacyComponent,
+    ForbiddenComponent,
+    RecipeDetailsComponent,
+    RemoveDomainFromEmailPipe,
   ],
   imports: [
     BrowserModule,
@@ -46,12 +53,19 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:5001"],
-        blacklistedRoutes: []
+        whitelistedDomains: ["localhost:5001", "localhost:5000"],
+        blacklistedRoutes: [],
+        authScheme: "Bearer "
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
