@@ -11,8 +11,10 @@ import { UserService } from 'src/app/shared/user.service';
 export class RecipeDetailsComponent implements OnInit {
   @Input() recipe : any;
   public comments: any = [];
+  public isUserAuthenticated: boolean = false;
+  public commentBody:any;
   constructor(private route: ActivatedRoute,
-    private sharedService: SharedService) { }
+    private sharedService: SharedService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.route.params
@@ -21,25 +23,37 @@ export class RecipeDetailsComponent implements OnInit {
       this.sharedService.getRecipeById(id).subscribe(recipe =>{
         this.recipe = recipe
         this.recipe.user.email.substring(0, this.recipe.user.email.lastIndexOf('@'));
-        console.log(recipe);
-        console.log(id);
       })
     });
+    this.refreshCommentList();
+    this.userService.authChanged
+    .subscribe(res => {
+      this.isUserAuthenticated = res;
+    })
+}
+  addComment(){
+    var val = {
+      commentBody:this.commentBody,
+      recipeId:this.recipe.id
+    };
+    this.sharedService.createComment(val).subscribe(res=>{
+      console.log(res);
+    });
+    this.refreshCommentList();
+  }  
 
+  refreshCommentList(){
     this.route.params
     .subscribe((params: Params) => {
       const id = params['id'];
       this.sharedService.getCommentsForRecipe(id).subscribe(comments =>{
         this.comments = comments
-        console.log(comments);
-        console.log(id);
       })
   });
-}
-  
+  }
+
   getRecipe() : void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.sharedService.getRecipeById(id).subscribe(recipe => this.recipe = recipe);
-    console.log("value: ", this.recipe);
   }
 }

@@ -21,7 +21,7 @@ export class UserService {
     return this._http.post<RegistrationResponse> (this.createCompleteRoute(route, this._envUrl.urlAddress), body);
   }
   public loginUser = (route: string, body: UserForAuthentication) => {
-    return this._http.post<AuthResponse>(this.createCompleteRoute(route, this._envUrl.urlAddress), body, );
+    return this._http.post<AuthResponse>(this.createCompleteRoute(route, this._envUrl.urlAddress), body);
   }
   private createCompleteRoute = (route: string, envAddress: string) => {
     return `${envAddress}/${route}`;
