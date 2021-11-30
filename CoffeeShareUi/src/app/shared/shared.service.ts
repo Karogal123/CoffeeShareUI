@@ -72,7 +72,7 @@ export class SharedService {
   }
   //----RecipesScore
   getRecipesScoresForRecipe(val: any){
-    return this.http.get<any>(this.ApiUrl + '/RecipesScores', val)
+    return this.http.get<any>(this.ApiUrl + '/RecipesScores', {params: {recipeId: val}})
   }
   createRecipeScore(val:any){
     return this.http.post(this.ApiUrl + '/RecipesScores/', val);
@@ -80,7 +80,10 @@ export class SharedService {
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
-  //----RecipesScore
+  //----Tags
+  getTags() : Observable<any[]>{
+    return this.http.get<any[]>(this.ApiUrl + '/Tags');
+  }
 
 
 

@@ -13,6 +13,10 @@ export class RecipeComponent implements OnInit {
   ActiveAddEdditRecipe:boolean=false;
   public isUserAuthenticated: boolean = false;
   constructor(private service:SharedService, private userService: UserService) { 
+    this.userService.authChanged
+    .subscribe(res => {
+      this.isUserAuthenticated = res;
+    })
   }
 
   RecipeList: any = [];
@@ -22,14 +26,6 @@ export class RecipeComponent implements OnInit {
     this.userService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
-    })
-  }
-
-  checkifloggedin() : any{
-    this.userService.authChanged
-    .subscribe(res => {
-      this.isUserAuthenticated = res;
-      console.log(res);
     })
   }
 

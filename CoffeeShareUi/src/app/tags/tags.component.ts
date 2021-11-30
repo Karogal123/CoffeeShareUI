@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-tags',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit {
-
-  constructor() { }
+  public TagList : any = [];
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
+    this.refreshTagList();
+  }
+
+  refreshTagList(){
+    this.sharedService.getTags().subscribe(tags => {
+      this.TagList = tags;
+      console.log(this.TagList);
+    })
   }
 
 }

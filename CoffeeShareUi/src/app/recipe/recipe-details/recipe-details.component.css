@@ -1,3 +1,4 @@
+
 body {
     background-color: #f7f6f6
 }
@@ -103,3 +104,19 @@ ol{font-family:'Raleway',cursive;
 font-size:20px;
 font-weight: bold;}
 li span { font-weight: normal;font-size:16px;}
+
+.gift {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: #ffa600;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffa600;
+  }

@@ -16,8 +16,10 @@
           <ol>
            <li><span><p style="font-size:20px;">{{recipe.recipeBody}}</p></span></li>
       </ol>
+      <div style="font-size: x-large; color: orange;"><ngb-rating [max]="5" [(rate)]="overallScore" [readonly]="false"></ngb-rating></div>
+      </div>
 </div>
-</div>
+<div class="class" *ngFor="let user of userScores">{{user.score}} - {{overallScore | number: '1.2-2'}}</div>
 <div class="container mt-5">
 
     <div class="row d-flex justify-content-center">
@@ -31,7 +33,7 @@
             </div>
             <div class="card p-3 mt-2" *ngFor="let comment of comments">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="user d-flex flex-row align-items-center"> <span><h2 class="font-weight-bold text-primary">{{comment.user.email | removeDomainFromEmail}}</h2> <h3 class="font-weight-bold">{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
+                    <div class="user d-flex flex-row align-items-center"> <span><h2 class="font-weight-bold text-primary">{{comment.user.email | removeDomainFromEmail}}</h2> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
