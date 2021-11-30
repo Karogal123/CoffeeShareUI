@@ -20,6 +20,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ErrorHandlerService } from './shared/error-handler.service';
 import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
 import { RemoveDomainFromEmailPipe } from './pipes/remove-domain-from-email.pipe';
+import { ShortenRecipeBodyPipe } from './pipes/shorten-recipe-body.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -40,6 +41,7 @@ export function tokenGetter() {
     ForbiddenComponent,
     RecipeDetailsComponent,
     RemoveDomainFromEmailPipe,
+    ShortenRecipeBodyPipe,
   ],
   imports: [
     BrowserModule,

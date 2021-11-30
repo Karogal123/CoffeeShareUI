@@ -36,7 +36,7 @@ export class UserService {
   public isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("token");
  
-    return !token && !this._jwtHelper.isTokenExpired(token!);
+    return token != null && this._jwtHelper.isTokenExpired(token) == false;
   }
   private generateHeaders = () => {
     return {

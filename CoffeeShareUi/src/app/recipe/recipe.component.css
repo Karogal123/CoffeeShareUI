@@ -28,17 +28,16 @@
  .column {
 	 flex: 1;
 	 border: 1px solid gray;
+	 height:150px;
 	 margin: 2px;
 	 padding: 10px;
+	 
 }
  .column:first-child {
 	 margin-left: 0;
 }
  .column:last-child {
 	 margin-right: 0;
-}
- footer {
-	 padding: 0 15px;
 }
  @media screen and (max-width: 980px) {
 	 .columns .column {

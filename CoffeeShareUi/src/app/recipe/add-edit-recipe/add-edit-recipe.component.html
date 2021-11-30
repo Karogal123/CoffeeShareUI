@@ -3,16 +3,23 @@
     
     <div class ="col-sm-10">
         <input type="text" class="form-control" [(ngModel)]="RecipeName" placeholder="Enter recipe name">
-        <input type="text" class="form-control" [(ngModel)]="RecipeBody" placeholder="Enter recipe text">
+        <textarea class="form-control" [(ngModel)]="RecipeBody" placeholder="Enter your recipe there"></textarea>
         <select type="text" class="form-control" [(ngModel)]="RecipeIntentedUse">
             <option value="" disabled selected>Intended Use</option>
             <option value="Espresso">Espresso</option>
             <option value="Aeropress">Aeropress</option>
             <option value="FrenchPress">FrenchPress</option>
             <option value="Chemex">Chemex</option>
-            <option value="Dripper">MediDripperum</option>
+            <option value="Dripper">Dripper</option>
             <option value="MokaPot">MokaPot</option>
         </select>
+        <select type="text" class="form-control" [(ngModel)]="RecipeGrindLevel">
+            <option value="" disabled selected>Grind Level</option>
+            <option value="Fine">Fine</option>
+            <option value="Coarse">Coarse</option>
+        </select>
+        <input type="text" class="form-control" [(ngModel)]="RecipeWaterAmount" placeholder="Enter water amount">
+        <input type="text" class="form-control" [(ngModel)]="RecipeWaterTemperature" placeholder="Enter water temperature">
         <select type="text" class="form-control" [(ngModel)]="RecipeCoffeeId">
             <option value="" disabled selected>Select coffee</option>
             <option *ngFor="let coffee of CoffeeList" 

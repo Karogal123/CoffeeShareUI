@@ -1,5 +1,5 @@
 <div class="background">
-<button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+<button type="button" *ngIf="checkifloggedin()" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" 
 (click)="addClick()" 
 data-backdrop="static" 
 data-keyboard="false">
@@ -31,7 +31,7 @@ data-keyboard="false">
 <section class="columns">
 	<div class="column" *ngFor="let recipe of RecipeList">
 		<h2><a routerLink="/recipe/{{recipe.id}}" routerLinkActive="true">{{recipe.name}}</a></h2>
-		<p>{{recipe.recipeBody}}</p>
+		<p>{{recipe.recipeBody | slice:0:30}}...</p>
 	</div>
 </section>	
 </div>

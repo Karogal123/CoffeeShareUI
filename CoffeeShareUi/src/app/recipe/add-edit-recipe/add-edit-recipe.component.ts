@@ -14,6 +14,9 @@ export class AddEditRecipeComponent implements OnInit {
   RecipeUserId : number = 0;
   RecipeIntentedUse: string ="";
   RecipeCoffeeId: string ="";
+  RecipeGrindLevel: string ="";
+  RecipeWaterAmount: number = 0;
+  RecipeWaterTemperature: number = 0;
   CoffeeList: any[] = [];
   constructor(private service : SharedService) { }
 
@@ -24,6 +27,9 @@ export class AddEditRecipeComponent implements OnInit {
     this.RecipeUserId = this.recipe.userId;
     this.RecipeIntentedUse = this.recipe.intendedUse;
     this.RecipeCoffeeId = this.recipe.coffeeId;
+    this.RecipeGrindLevel = this.recipe.grindLevel;
+    this.RecipeWaterAmount = this.recipe.waterAmount;
+    this.RecipeWaterTemperature = this.recipe.waterTemperature;
     this.getCoffeesList();
   }
 
@@ -34,7 +40,10 @@ export class AddEditRecipeComponent implements OnInit {
       recipeBody:this.RecipeBody,
       userId: 1,
       intendedUse:this.RecipeIntentedUse,
-      coffeeId:this.RecipeCoffeeId
+      coffeeId:this.RecipeCoffeeId,
+      grindLevel:this.RecipeGrindLevel,
+      waterAmount:this.RecipeWaterAmount,
+      waterTemperature:this.RecipeWaterTemperature
     };
     this.service.createRecipe(val).subscribe(res=>{
       alert(res.toString());
@@ -47,7 +56,10 @@ export class AddEditRecipeComponent implements OnInit {
       recipeBody:this.RecipeBody,
       userId:this.RecipeUserId,
       intendedUse:this.RecipeIntentedUse,
-      coffeeId:this.RecipeCoffeeId
+      coffeeId:this.RecipeCoffeeId,
+      grindLevel:this.RecipeGrindLevel,
+      waterAmount:this.RecipeWaterAmount,
+      waterTemperature:this.RecipeWaterTemperature
     };
     this.service.updateRecipe(val).subscribe(res=>{
       alert(res.toString());
@@ -57,5 +69,9 @@ export class AddEditRecipeComponent implements OnInit {
     this.service.getCoffees().subscribe(data => {
       this.CoffeeList = data;
     })
+  }
+  onKey(event: any){
+    this.RecipeBody = event.target.value; 
+    console.log(this.RecipeBody)
   }
 }

@@ -62,3 +62,44 @@ body {
     color: green;
     cursor: pointer
 }
+
+.wrapper2 {
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 20px;
+    grid-template-columns: 450px 400px 400px;
+    grid-template-areas:
+"title Preparation Preparation "
+    " Ingredients Preparation Preparation"
+      "Ingredients Preparation  Preparation";}
+.title {grid-area:title; vertical-align:top;background-color:clear;}
+.Ingredients {grid-area:Ingredients;   
+vertical-align:bottom;background-color:clear;}
+.Preparation {grid-area:Preparation;vertical-align:bottom;background-color:clear;}
+body{margin:30px;}
+.wrapper2 h1{letter-spacing:5px;
+font-size:70px;
+line-height:10px;
+font-family:'Pacifico',cursive}
+
+.wrapper2 h2{font-family:'Pacifico',cursive;
+font-size:46px;
+line-height:48px;
+font-weight:10px;}
+.wrapper2 p{font-family:"Raleway",cursive;
+white-space: pre-wrap;
+font-size:25px;}
+#mydiv
+{font-family:'Raleway',cursive;
+font-size:25px;
+}
+#mydiv a
+{font-size:16px;}
+ul{font-family:'Raleway',cursive;
+font-size:16px;
+}
+.ul{vertical-align:bottom;}
+ol{font-family:'Raleway',cursive;
+font-size:20px;
+font-weight: bold;}
+li span { font-weight: normal;font-size:16px;}

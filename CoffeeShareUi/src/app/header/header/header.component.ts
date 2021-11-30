@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
     this.userService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
+    this.isUserAuthenticated = true;
     })
   }
   

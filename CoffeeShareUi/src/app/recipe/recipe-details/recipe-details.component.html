@@ -1,15 +1,28 @@
-<h2>Name : {{recipe.name}}</h2>
-<h2>RecipeBody: {{recipe.recipeBody}}</h2>
-<h2>IntendedUse: {{recipe.intendedUse}}</h2>
-<h2>CoffeeId: {{recipe.coffeeId}}</h2>
-<h2>UserId: {{recipe.userId}}</h2>
-<h2>UserName: {{recipe.user.email | removeDomainFromEmail}}</h2>
 
+<div class="wrapper2"> 
+        <div class="title">  <blockquote><h2>{{recipe.name}}</h2></blockquote> </div>
+       <div class="Ingredients">   <br><br><blockquote><p><b>Needed:</b></p></blockquote>
+          <ul>
+          <i> 
+      <li>Coffee: {{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}} - {{recipe.coffeeAmount}}</li>
+      <li>Inteded use: {{recipe.intendedUse}}</li> 
+      <li>Grind: {{recipe.grindLevel}}</li> 
+      <li>Water: {{recipe.waterAmount}} ml / {{recipe.waterTemperature}} °C</li>
+            </i>
+          </ul>
+         </div>
+         <div class="Preparation" >
+           <blockquote><div id="mydiv"><b>Preparation</b><a></a></div></blockquote>
+          <ol>
+           <li><span><p style="font-size:20px;">{{recipe.recipeBody}}</p></span></li>
+      </ol>
+</div>
+</div>
 <div class="container mt-5">
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
-            <div class="form-group shadow-textarea" *ngIf="isUserAuthenticated">
+            <div class="form-group shadow-textarea">
                 <label for="commentBodyArea">Leave a comment</label>
                 <textarea class="form-control z-depth-2" id="commentBodyArea" rows="3" placeholder="Leave your opinion on recipe..." [(ngModel)]="commentBody"></textarea>
                 <button type="button" class="btn btn-primary" (click)="addComment()">Send</button>
