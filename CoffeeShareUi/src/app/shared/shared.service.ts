@@ -75,7 +75,7 @@ export class SharedService {
     return this.http.get<any>(this.ApiUrl + '/RecipesScores', {params: {recipeId: val}})
   }
   createRecipeScore(val:any){
-    return this.http.post(this.ApiUrl + '/RecipesScores/', val);
+    return this.http.post(this.ApiUrl + '/RecipesScores', val, this.generateHeaders());
   }
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);

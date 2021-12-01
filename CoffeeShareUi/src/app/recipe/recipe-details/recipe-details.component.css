@@ -105,18 +105,18 @@ font-size:20px;
 font-weight: bold;}
 li span { font-weight: normal;font-size:16px;}
 
-.gift {
+.star {
     position: relative;
     display: inline-block;
     font-size: 3rem;
     color: #d3d3d3;
   }
   .full {
-    color: #ffa600;
+    color: red;
   }
   .half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
-    color: #ffa600;
+    color: red;
   }

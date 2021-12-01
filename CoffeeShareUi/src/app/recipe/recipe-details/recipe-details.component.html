@@ -16,7 +16,12 @@
           <ol>
            <li><span><p style="font-size:20px;">{{recipe.recipeBody}}</p></span></li>
       </ol>
-      <div style="font-size: x-large; color: orange;"><ngb-rating [max]="5" [(rate)]="overallScore" [readonly]="false"></ngb-rating></div>
+      <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+          <span class="half" [style.width.%]="fill">&#9734;</span>&#9734;
+        </span>
+      </ng-template>
+      <div style="font-size: x-large; color: orange;"><ngb-rating [max]="5" [(rate)]="overallScore" [starTemplate]="t" [readonly]="false" (rateChange)='onRateChange(overallScore)'></ngb-rating></div>
       </div>
 </div>
 <div class="class" *ngFor="let user of userScores">{{user.score}} - {{overallScore | number: '1.2-2'}}</div>

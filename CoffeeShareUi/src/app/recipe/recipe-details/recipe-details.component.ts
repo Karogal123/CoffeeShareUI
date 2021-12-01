@@ -77,6 +77,16 @@ export class RecipeDetailsComponent implements OnInit {
     this.overallScore = this.userScores.reduce((total: any, next: { score: any; }) => total + next.score, 0) / this.userScores.length;
     console.log(this.overallScore)
     return this.overallScore;
-
+  }
+  onRateChange(rating : number){
+    console.log();
+    var val = {
+      recipeId : this.recipe.id,
+      score : rating
+    };
+    this.sharedService.createRecipeScore(val).subscribe(result => {
+      console.log(result);
+      this.getRating();
+    })
   }
 }
