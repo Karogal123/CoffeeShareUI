@@ -12,7 +12,9 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
   </head>
-
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+</div>
   <body class="text-center">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <h1 class="h3 mb-3 font-weight-normal">Login</h1>

@@ -9,11 +9,11 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class HeaderComponent implements OnInit {
   public isUserAuthenticated: boolean = false;
+  public isUserAdmin: boolean = false;
   constructor(private userService: UserService, private _router: Router) {
     this.userService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
-    this.isUserAuthenticated = true;
     })
   }
   

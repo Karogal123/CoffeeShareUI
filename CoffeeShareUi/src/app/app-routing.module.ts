@@ -12,14 +12,14 @@ import { TagsComponent } from './tags/tags.component';
 
 const routes: Routes = [
   {path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
-  {path:'coffees', component: CoffeeComponent, canActivate: [AuthGuard]},
+  {path:'coffees', component: CoffeeComponent, canActivate: [AuthGuard, AdminGuard]},
   {path:'recipes', component: RecipeComponent},
   {path: 'recipe/:id', component: RecipeDetailsComponent},
-  {path:'manufacturers', component: ManufacturerComponent },
+  {path:'manufacturers', component: ManufacturerComponent, canActivate: [AuthGuard, AdminGuard] },
   {path:'tags', component: TagsComponent},
   {path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'forbidden', component: ForbiddenComponent },
-  {path: '', redirectTo: '/manufacturers', pathMatch: 'full' },
+  {path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {path: '**', redirectTo: '/404', pathMatch: 'full'}
 ];
 

@@ -14,8 +14,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class UserService {
   private _authChangeSub = new ReplaySubject<boolean>(1);
   public authChanged = this._authChangeSub.asObservable();
-  
-  constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService, private _jwtHelper: JwtHelperService) { }
+
+  constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService, private _jwtHelper: JwtHelperService) { 
+  }
 
   public registerUser = (route: string, body: UserForRegistration) => {
     return this._http.post<RegistrationResponse> (this.createCompleteRoute(route, this._envUrl.urlAddress), body);
@@ -35,7 +36,7 @@ export class UserService {
   }
   public isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("token");
- 
+    
     return token != null && this._jwtHelper.isTokenExpired(token) == false;
   }
   private generateHeaders = () => {

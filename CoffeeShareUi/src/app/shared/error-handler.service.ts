@@ -55,7 +55,7 @@ export class ErrorHandlerService implements HttpInterceptor {
   }
   private handleUnauthorized = (error: HttpErrorResponse) => {
     if(this._router.url === '/authentication/login') {
-      return 'Authenitcation failed. Wrong Username or Password';
+      return 'Authenitcation failed. Wrong Email or Password';
     }
     else {
       this._router.navigate(['/authentication/login'], { queryParams: { returnUrl: this._router.url }});

@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   userForm! : FormGroup;
   user! : UserForAuthentication;
   submitted = false;
+  public errorMessage: string = '';
+  public showError!: boolean;
   private _returnUrl!: string;
   constructor(private formBuilder: FormBuilder, private userService: UserService, private _router: Router, private _route: ActivatedRoute) { }
 
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
+    this.showError = false;
     if(this.userForm.invalid){
       return;
     }
@@ -50,7 +53,8 @@ export class LoginComponent implements OnInit {
       this._router.navigate([this._returnUrl]);
   },
   error =>{
-    console.log(error.error.errors);
+    this.errorMessage = error;
+    this.showError = true;
   });
   }
 } 

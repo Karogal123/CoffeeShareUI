@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.service';
 import { UserService } from 'src/app/shared/user.service';
 
@@ -16,7 +16,7 @@ export class RecipeDetailsComponent implements OnInit {
   public userScores: any = [];
   public overallScore: number = 0;
   constructor(private route: ActivatedRoute,
-  private sharedService: SharedService, private userService: UserService) { }
+  private sharedService: SharedService, private userService: UserService, private router:Router) { }
   
   ngOnInit(): void {
     this.route.params
@@ -32,7 +32,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.userService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
-    console.log("This is ngOnInit", this.userScores)
     })
 
 }
@@ -73,13 +72,14 @@ export class RecipeDetailsComponent implements OnInit {
     this.sharedService.getRecipeById(id).subscribe(recipe => this.recipe = recipe);
   }
   sumRatingValues(){
-    console.log("this is sumratingValues", this.userScores)
     this.overallScore = this.userScores.reduce((total: any, next: { score: any; }) => total + next.score, 0) / this.userScores.length;
-    console.log(this.overallScore)
     return this.overallScore;
   }
   onRateChange(rating : number){
-    console.log();
+    if(this.isUserAuthenticated == false){
+      this.router.navigate(["/authentication/login"])
+      return;
+    }
     var val = {
       recipeId : this.recipe.id,
       score : rating
