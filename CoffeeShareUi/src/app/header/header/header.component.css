@@ -2,3 +2,14 @@ a{
     font-style: italic;
     color: white;
 }
+
+
+#navbarNavDropdownLeft{
+   width: 90%; 
+}
+
+#navbarNavDropdownRight{
+    width: 10%;
+    float:right;
+    text-align: right;
+}
