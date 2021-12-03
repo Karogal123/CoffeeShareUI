@@ -110,13 +110,13 @@ li span { font-weight: normal;font-size:16px;}
     display: inline-block;
     font-size: 3rem;
     color: #d3d3d3;
-  }
-  .full {
-    color: red;
-  }
-  .half {
+}
+.star.full {
+    color: #ffa600;
+}
+.half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
-    color: red;
-  }
+    color: #ffa600;
+}

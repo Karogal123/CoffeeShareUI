@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { AuthResponse } from '../interface/user/AuthResponse';
 import { RegistrationResponse } from '../interface/user/registrationResponse';
 import { UserForAuthentication } from '../interface/user/userForAuthentication';
@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class UserService {
-  private _authChangeSub = new Subject<boolean>()
+  private _authChangeSub = new ReplaySubject<boolean>(1);
   public authChanged = this._authChangeSub.asObservable();
   
   constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService, private _jwtHelper: JwtHelperService) { }
