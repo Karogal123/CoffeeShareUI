@@ -5,9 +5,9 @@
         <input type="text" class="form-control" [(ngModel)]="ManufacturerName" placeholder="Enter manufacturer name">
     </div>
 </div>
-<button (click)="addCoffee()" *ngIf="manufacturer.id==0" class="btn btn-primary">
+<button (click)="addManufacturer()" *ngIf="manufacturer.id==0" class="btn btn-primary">
     Add
 </button>
-<button (click)="updateCoffee()" *ngIf="manufacturer.id!=0" class="btn btn-primary">
+<button (click)="updateManufacturer()" *ngIf="manufacturer.id!=0" class="btn btn-primary">
     Update
 </button>

@@ -20,10 +20,14 @@
         </select>
         <input type="text" class="form-control" [(ngModel)]="RecipeWaterAmount" placeholder="Enter water amount">
         <input type="text" class="form-control" [(ngModel)]="RecipeWaterTemperature" placeholder="Enter water temperature">
-        <select type="text" class="form-control" [(ngModel)]="RecipeCoffeeId">
-            <option value="" disabled selected>Select coffee</option>
-            <option *ngFor="let coffee of CoffeeList" 
-            [value]="coffee.id" >{{coffee.name}}</option>
+        <select id="coffeeManufacturer" class="form-control"
+        name="coffeeManufacturer" [(ngModel)] = "RecipeCoffeeId">
+            <optgroup [attr.label]="coffee.name" *ngFor="let coffee of groupedArray">
+                <option *ngFor="let coffe of coffee.values" 
+                [value]="coffe.id">
+                 {{coffe.name}}
+                </option>
+            </optgroup>
         </select>
     </div>
 </div>

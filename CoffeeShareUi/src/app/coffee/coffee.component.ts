@@ -9,11 +9,14 @@ import { SharedService } from '../shared/shared.service';
 export class CoffeeComponent implements OnInit {
   ModalTitle:string="";
   coffee: any;
+  CoffeeManufacturerFilter: string ="";
+  CoffeeNameFilter: string ="";
   ActiveAddEdditCoffee:boolean=false;
   constructor(private service:SharedService) { }
 
   CoffeeList: any = [];
-  
+  CoffeeListFiltered: any = [];
+
   ngOnInit(): void {
     this.refreshCoffeeList();
   }
@@ -21,6 +24,8 @@ export class CoffeeComponent implements OnInit {
   refreshCoffeeList(){
     this.service.getCoffees().subscribe(data => {
       this.CoffeeList=data;
+      this.CoffeeListFiltered = data;
+      console.log(this.CoffeeListFiltered);
     })
   }
   addClick(){
@@ -53,4 +58,12 @@ export class CoffeeComponent implements OnInit {
     this.service.deleteCoffee(coffeeDelete).subscribe(data => this.refreshCoffeeList());
   }
 
+  Filterfn(){
+    var CoffeeManufacturerFilter = this.CoffeeManufacturerFilter;
+    var CoffeeNameFilter = this.CoffeeNameFilter;
+    this.CoffeeListFiltered = this.CoffeeList.filter(function (el : any){
+      return el.manufacturer.name.toString().toLowerCase().includes(CoffeeManufacturerFilter.toString().trim().toLowerCase()
+      )&&el.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase())
+    });
+  }
 }

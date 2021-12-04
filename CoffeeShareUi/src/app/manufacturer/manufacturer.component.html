@@ -26,12 +26,16 @@ data-keyboard="false">
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>
+              Name
+              <div class="d-flex flex-row">
+              <input [(ngModel)] = "ManufacturerNameFilter" class="form-control" (keyup)="Filterfn()" placeholder="Filter by name">
+            </div></th>
             <th>Options</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let dataItem of ManufacturerList">
+        <tr *ngFor="let dataItem of ManufacturerListFiltered">
             <td>{{dataItem.name}}</td>
             <td>
                 <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" 

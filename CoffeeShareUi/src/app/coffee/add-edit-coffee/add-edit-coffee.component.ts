@@ -44,8 +44,8 @@ export class AddEditCoffeeComponent implements OnInit {
       beanType:this.CoffeeBeanType,
       imgUrl:this.CoffeeImgUrl
     };
-    this.service.createCoffee(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.createCoffee(val).subscribe(()=>{
+      alert("Successfully added");
     });
   }
   updateCoffee(){
@@ -59,8 +59,8 @@ export class AddEditCoffeeComponent implements OnInit {
       beanType:this.CoffeeBeanType,
       imgUrl:this.CoffeeImgUrl
     };
-    this.service.updateCoffee(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.updateCoffee(val).subscribe(()=>{
+      alert("Successfully updated");
     });
   }
   getCountryList(){

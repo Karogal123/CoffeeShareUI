@@ -43,7 +43,7 @@
          </div>
        </div>
        <h1 class="recipeTitle"><a class="recipeTitle" routerLink="/recipe/{{recipe.id}}" routerLinkActive="true">{{recipe.name}}</a></h1>
-       <p class="recipeBody">{{recipe.recipeBody | slice:0:97}}...</p>
+       <p class="recipeBody">{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}}</p>
      </div>
    </div>	
  </div>

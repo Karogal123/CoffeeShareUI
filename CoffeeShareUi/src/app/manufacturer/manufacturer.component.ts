@@ -9,11 +9,13 @@ import { SharedService } from '../shared/shared.service';
 export class ManufacturerComponent implements OnInit {
   ModalTitle:string="";
   manufacturer: any;
+  ManufacturerNameFilter: string="";
   ActiveAddEditManufacturer:boolean=false;
   constructor(private service:SharedService) { }
 
   ManufacturerList: any = [];
-  
+  ManufacturerListFiltered: any = [];
+
   ngOnInit(): void {
     this.refreshManufacturerList();
   }
@@ -21,6 +23,7 @@ export class ManufacturerComponent implements OnInit {
   refreshManufacturerList(){
     this.service.getManufacturers().subscribe(data => {
       this.ManufacturerList=data;
+      this.ManufacturerListFiltered = data;
     })
   }
   addClick(){
@@ -47,4 +50,11 @@ export class ManufacturerComponent implements OnInit {
     this.service.deleteManufacturer(manufacturerDelete).subscribe(data => this.refreshManufacturerList());
   }
 
+  Filterfn(){
+    var ManufacturerNameFilter = this.ManufacturerNameFilter;
+    this.ManufacturerListFiltered = this.ManufacturerList.filter(function (el : any){
+      return el.name.toString().toLowerCase().includes(ManufacturerNameFilter.toString().trim().toLowerCase())
+    });
+  }
 }
+

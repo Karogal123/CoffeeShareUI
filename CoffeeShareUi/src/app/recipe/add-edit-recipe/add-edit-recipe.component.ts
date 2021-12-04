@@ -18,6 +18,8 @@ export class AddEditRecipeComponent implements OnInit {
   RecipeWaterAmount: number = 0;
   RecipeWaterTemperature: number = 0;
   CoffeeList: any[] = [];
+  unique!: string[];
+  groupedArray! : any[];
   constructor(private service : SharedService) { }
 
   ngOnInit(): void {
@@ -33,6 +35,14 @@ export class AddEditRecipeComponent implements OnInit {
     this.getCoffeesList();
   }
 
+  formatArray() {
+    this.unique = [...new Set(this.CoffeeList.map(item => item.manufacturer.name))];
+    this.groupedArray = this.unique.map(i => ({
+      name: i,
+      values: this.CoffeeList.filter(d => d.manufacturer.name === i)
+    }))
+}
+
   addRecipe(){
     var val = {
       id:this.RecipeId,
@@ -45,8 +55,8 @@ export class AddEditRecipeComponent implements OnInit {
       waterAmount:this.RecipeWaterAmount,
       waterTemperature:this.RecipeWaterTemperature
     };
-    this.service.createRecipe(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.createRecipe(val).subscribe(()=>{
+      alert("Successfully updated");
     });
   }
   updateRecipe(){
@@ -61,17 +71,18 @@ export class AddEditRecipeComponent implements OnInit {
       waterAmount:this.RecipeWaterAmount,
       waterTemperature:this.RecipeWaterTemperature
     };
-    this.service.updateRecipe(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.updateRecipe(val).subscribe(()=>{
+      alert("Successfully updated");
     });
   }
   getCoffeesList(){
     this.service.getCoffees().subscribe(data => {
       this.CoffeeList = data;
+      this.formatArray();
+      console.log(this.groupedArray);
     })
   }
   onKey(event: any){
     this.RecipeBody = event.target.value; 
-    console.log(this.RecipeBody)
   }
 }

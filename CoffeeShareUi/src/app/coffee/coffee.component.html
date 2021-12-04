@@ -26,17 +26,25 @@ data-keyboard="false">
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Manufacturer</th>
-            <th>Name</th>
-            <th>CountryId</th>
-            <th>BeansProcessing</th>
-            <th>DegreeOfRoasting</th>
-            <th>BeanType</th>
+          <th>
+            Manufacturer
+            <div class="d-flex flex-row">
+            <input [(ngModel)] = "CoffeeManufacturerFilter" class="form-control" (keyup)="Filterfn()" placeholder="Filter by manufacturer name">
+          </div></th>
+          <th>
+            Name
+            <div class="d-flex flex-row">
+            <input [(ngModel)] = "CoffeeNameFilter" class="form-control" (keyup)="Filterfn()" placeholder="Filter by coffee name">
+          </div></th>
+            <th>Country</th>
+            <th>Beans processing</th>
+            <th>Degree of roasting</th>
+            <th>Bean type</th>
             <th>Options</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let dataItem of CoffeeList">
+        <tr *ngFor="let dataItem of CoffeeListFiltered">
             <td>{{dataItem.manufacturer.name}}</td>
             <td>{{dataItem.name}}</td>
             <td>{{dataItem.country.name}}</td>

@@ -18,22 +18,22 @@ export class AddEditManufacturerComponent implements OnInit {
     this.ManufacturerName = this.manufacturer.name;
   }
 
-  addCoffee(){
+  addManufacturer(){
     var val = {
       id:this.ManufacturerId,
       name:this.ManufacturerName
     };
-    this.service.createManufacturer(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.createManufacturer(val).subscribe( ()=>{
+      alert("Successfully added");
     });
   }
-  updateCoffee(){
+  updateManufacturer(){
     var val = {
       id:this.ManufacturerId,
       name:this.ManufacturerName
     };
-    this.service.updateManufactutrer(val).subscribe(res=>{
-      alert(res.toString());
+    this.service.updateManufactutrer(val).subscribe(()=>{
+      alert("Successfully updated");
     });
   }
 }
