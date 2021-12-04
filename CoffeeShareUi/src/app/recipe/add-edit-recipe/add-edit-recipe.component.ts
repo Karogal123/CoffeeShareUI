@@ -16,6 +16,7 @@ export class AddEditRecipeComponent implements OnInit {
   RecipeCoffeeId: string ="";
   RecipeGrindLevel: string ="";
   RecipeWaterAmount: number = 0;
+  RecipeCoffeeAmount: number = 0;
   RecipeWaterTemperature: number = 0;
   CoffeeList: any[] = [];
   unique!: string[];
@@ -32,6 +33,7 @@ export class AddEditRecipeComponent implements OnInit {
     this.RecipeGrindLevel = this.recipe.grindLevel;
     this.RecipeWaterAmount = this.recipe.waterAmount;
     this.RecipeWaterTemperature = this.recipe.waterTemperature;
+    this.RecipeCoffeeAmount = this.recipe.coffeeAmount;
     this.getCoffeesList();
   }
 
@@ -53,7 +55,8 @@ export class AddEditRecipeComponent implements OnInit {
       coffeeId:this.RecipeCoffeeId,
       grindLevel:this.RecipeGrindLevel,
       waterAmount:this.RecipeWaterAmount,
-      waterTemperature:this.RecipeWaterTemperature
+      waterTemperature:this.RecipeWaterTemperature,
+      coffeeAmount:this.RecipeCoffeeAmount
     };
     this.service.createRecipe(val).subscribe(()=>{
       alert("Successfully updated");
@@ -69,7 +72,8 @@ export class AddEditRecipeComponent implements OnInit {
       coffeeId:this.RecipeCoffeeId,
       grindLevel:this.RecipeGrindLevel,
       waterAmount:this.RecipeWaterAmount,
-      waterTemperature:this.RecipeWaterTemperature
+      waterTemperature:this.RecipeWaterTemperature,
+      coffeeAmount:this.RecipeCoffeeAmount
     };
     this.service.updateRecipe(val).subscribe(()=>{
       alert("Successfully updated");

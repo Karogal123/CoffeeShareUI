@@ -10,6 +10,7 @@ import { UserService } from '../shared/user.service';
 export class RecipeComponent implements OnInit {
   ModalTitle:string="";
   recipe: any;
+  CoffeeNameFilter: string = "";
   ActiveAddEdditRecipe:boolean=false;
   public isUserAuthenticated: boolean = false;
   constructor(private service:SharedService, private userService: UserService) { 
@@ -20,6 +21,7 @@ export class RecipeComponent implements OnInit {
   }
 
   RecipeList: any = [];
+  RecipeListFiltered : any = [];
   
   ngOnInit(): void {
     this.refreshRecipeList();
@@ -32,6 +34,7 @@ export class RecipeComponent implements OnInit {
   refreshRecipeList(){
     this.service.getRecipes().subscribe(data => {
       this.RecipeList=data;
+      this.RecipeListFiltered=data;
     })
   }
   addClick(){
@@ -60,6 +63,13 @@ export class RecipeComponent implements OnInit {
 
   deleteClick(recipeDelete: any){
     this.service.deleteRecipe(recipeDelete).subscribe(data => this.refreshRecipeList());
+  }
+
+  Filterfn(){
+    var CoffeeNameFilter = this.CoffeeNameFilter;
+    this.RecipeListFiltered = this.RecipeList.filter(function (el : any){
+      return el.coffee.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase())
+    });
   }
 
 }

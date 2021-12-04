@@ -4,6 +4,7 @@
   <div class="wrapper">
      <div class= "headerAndButton">
        <div class="headerAndButtonLeft">
+        <input [(ngModel)] = "CoffeeNameFilter" class="form-control" (keyup)="Filterfn()" placeholder="Search your coffee">
          <header>
            <a>Recipes</a>
          </header>
@@ -33,7 +34,7 @@
    
      
    <div class="columns">
-     <div class="column" *ngFor="let recipe of RecipeList">
+     <div class="column" *ngFor="let recipe of RecipeListFiltered">
        
        <div class="columnUserandIntendedUse">
          <td class="columnUser">{{recipe.user.email | removeDomainFromEmail}}</td>
