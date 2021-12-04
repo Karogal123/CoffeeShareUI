@@ -34,16 +34,15 @@
      
    <div class="columns">
      <div class="column" *ngFor="let recipe of RecipeList">
+       
        <div class="columnUserandIntendedUse">
-         <div class="columnUser">
-           <h3 class="recipeBody">{{recipe.user.email | removeDomainFromEmail}}</h3>
-         </div>
-         <div class="columnIntendedUse">
-           <h3 class="recipeBody">{{recipe.intendedUse}}</h3>
-         </div>
+         <td class="columnUser">{{recipe.user.email | removeDomainFromEmail}}</td>
+         <td class="columnIntendedUse">{{recipe.intendedUse}}</td>
        </div>
+       
        <h1 class="recipeTitle"><a class="recipeTitle" routerLink="/recipe/{{recipe.id}}" routerLinkActive="true">{{recipe.name}}</a></h1>
-       <p class="recipeBody">{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}}</p>
+       <a class="columnBrandAndName">{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}}</a>
+       
      </div>
    </div>	
  </div>
