@@ -11,6 +11,8 @@ export class AddEditManufacturerComponent implements OnInit {
   @Input() manufacturer: any;
   ManufacturerId!: number ;
   ManufacturerName: string="";
+  errorMessage: string ="";
+  public showError!: boolean;
   constructor(private service : SharedService) { }
 
   ngOnInit(): void {
@@ -19,13 +21,18 @@ export class AddEditManufacturerComponent implements OnInit {
   }
 
   addManufacturer(){
+    this.showError = false;
     var val = {
       id:this.ManufacturerId,
       name:this.ManufacturerName
     };
     this.service.createManufacturer(val).subscribe( ()=>{
       alert("Successfully added");
-    });
+    }, error => {
+      this.errorMessage = error.errors;
+      this.showError = true;
+    }
+    );
   }
   updateManufacturer(){
     var val = {
