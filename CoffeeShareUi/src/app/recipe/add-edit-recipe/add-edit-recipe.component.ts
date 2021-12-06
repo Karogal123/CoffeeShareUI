@@ -10,7 +10,7 @@ export class AddEditRecipeComponent implements OnInit {
   @Input() recipe: any;
   RecipeId!: number ;
   RecipeName: string="";
-  RecipeBody : string="";
+  RecipeBody : string = "";
   RecipeUserId : number = 0;
   RecipeIntentedUse: string ="";
   RecipeCoffeeId: string ="";
@@ -21,6 +21,14 @@ export class AddEditRecipeComponent implements OnInit {
   CoffeeList: any[] = [];
   unique!: string[];
   groupedArray! : any[];
+  step1: string = "";
+  step2: string = "";
+  step3: string = "";
+  step4: string = "";
+  step5: string = "";
+  step6: string = "";
+  step7: string = "";
+  steps: string = "";
   constructor(private service : SharedService) { }
 
   ngOnInit(): void {
@@ -46,6 +54,8 @@ export class AddEditRecipeComponent implements OnInit {
 }
 
   addRecipe(){
+    this.steps = this.step1 + '&' + this.step2 + '&' + this.step3 + '&' + this.step4 + '&' + this.step5 + '&' + this.step6 + '&' + this.step7 + '&'
+    this.RecipeBody = this.steps
     var val = {
       id:this.RecipeId,
       name:this.RecipeName,
@@ -58,6 +68,7 @@ export class AddEditRecipeComponent implements OnInit {
       waterTemperature:this.RecipeWaterTemperature,
       coffeeAmount:this.RecipeCoffeeAmount
     };
+    var arr = this.steps.split('&');
     this.service.createRecipe(val).subscribe(()=>{
       alert("Successfully updated");
     });

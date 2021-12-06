@@ -5,6 +5,15 @@
      <div class= "headerAndButton">
        <div class="headerAndButtonLeft">
         <input [(ngModel)] = "CoffeeNameFilter" class="form-control" (keyup)="Filterfn()" placeholder="Search your coffee">
+        <select [(ngModel)]="selectedIntededUse" (change)="Filterfn()">
+          <option value="" selected>Any</option>
+            <option value="Espresso">Espresso</option>
+            <option value="Aeropress">Aeropress</option>
+            <option value="FrenchPress">FrenchPress</option>
+            <option value="Chemex">Chemex</option>
+            <option value="Dripper">Dripper</option>
+            <option value="MokaPot">MokaPot</option>
+        </select>
          <header>
            <a>Recipes</a>
          </header>

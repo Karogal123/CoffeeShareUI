@@ -24,7 +24,9 @@ export class RecipeDetailsComponent implements OnInit {
       const id = params['id'];
       this.sharedService.getRecipeById(id).subscribe(recipe =>{
         this.recipe = recipe
-        this.recipe.user.email.substring(0, this.recipe.user.email.lastIndexOf('@'));
+        this.recipe.user.email.substring(0, this.recipe.user.email.lastIndexOf('@'));  
+        this.recipe.recipeBody = recipe.recipeBody.split('&').filter((e: any) => e)
+        console.log(this.recipe.recipeBody)
       })
     });
     this.getRating();

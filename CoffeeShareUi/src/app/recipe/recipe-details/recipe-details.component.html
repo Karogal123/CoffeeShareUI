@@ -14,7 +14,7 @@
          <div class="Preparation" >
            <blockquote><div id="mydiv"><b>Preparation</b><a></a></div></blockquote>
           <ol>
-           <li><span><p style="font-size:20px;">{{recipe.recipeBody}}</p></span></li>
+           <li><span><p style="font-size:20px;" *ngFor="let steps of recipe.recipeBody; let i = index" [attr.data-index] = "i">Step {{i+1}}: {{steps}}</p></span></li>
       </ol>
       <ng-template #t let-fill="fill">
         <span class="star" [class.full]="fill === 100">

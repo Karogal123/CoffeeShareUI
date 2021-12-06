@@ -12,6 +12,7 @@ export class RecipeComponent implements OnInit {
   recipe: any;
   CoffeeNameFilter: string = "";
   ActiveAddEdditRecipe:boolean=false;
+  selectedIntededUse: string ="";
   public isUserAuthenticated: boolean = false;
   constructor(private service:SharedService, private userService: UserService) { 
     this.userService.authChanged
@@ -67,9 +68,13 @@ export class RecipeComponent implements OnInit {
 
   Filterfn(){
     var CoffeeNameFilter = this.CoffeeNameFilter;
+    var selectedIntededUse = this.selectedIntededUse;
     this.RecipeListFiltered = this.RecipeList.filter(function (el : any){
-      return el.coffee.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase())
+      return el.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase()
+      )&&el.intendedUse.toString().toLowerCase().includes(selectedIntededUse.toString().trim().toLowerCase())
     });
+    console.log(CoffeeNameFilter);
+    console.log(selectedIntededUse);
   }
 
 }
