@@ -22,6 +22,7 @@ export class CoffeeComponent implements OnInit {
   }
 
   refreshCoffeeList(){
+    
     this.service.getCoffees().subscribe(data => {
       this.CoffeeList=data;
       this.CoffeeListFiltered = data;

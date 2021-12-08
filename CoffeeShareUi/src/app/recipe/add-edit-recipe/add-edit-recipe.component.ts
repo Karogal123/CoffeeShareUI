@@ -9,6 +9,8 @@ import { SharedService } from 'src/app/shared/shared.service';
 export class AddEditRecipeComponent implements OnInit {
   @Input() recipe: any;
   RecipeId!: number ;
+  errorMessage: string ="";
+  public showError!: boolean;
   RecipeName: string="";
   RecipeBody : string = "";
   RecipeUserId : number = 0;
@@ -71,7 +73,12 @@ export class AddEditRecipeComponent implements OnInit {
     var arr = this.steps.split('&');
     this.service.createRecipe(val).subscribe(()=>{
       alert("Successfully updated");
-    });
+    }, error => {
+      this.errorMessage = error.errors;
+      this.showError = true;
+      console.log(this.errorMessage)
+    }
+    );
   }
   updateRecipe(){
     var val = {
@@ -88,7 +95,12 @@ export class AddEditRecipeComponent implements OnInit {
     };
     this.service.updateRecipe(val).subscribe(()=>{
       alert("Successfully updated");
-    });
+    }, error => {
+      this.errorMessage = error.errors;
+      this.showError = true;
+      console.log(this.errorMessage)
+    }
+    );
   }
   getCoffeesList(){
     this.service.getCoffees().subscribe(data => {
@@ -96,8 +108,5 @@ export class AddEditRecipeComponent implements OnInit {
       this.formatArray();
       console.log(this.groupedArray);
     })
-  }
-  onKey(event: any){
-    this.RecipeBody = event.target.value; 
   }
 }

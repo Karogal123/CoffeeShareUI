@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
@@ -9,7 +9,6 @@ import { SharedService } from 'src/app/shared/shared.service';
 })
 export class AddEditCoffeeComponent implements OnInit {
   @Input() coffee: any;
-  coffeeForm!: FormGroup;
   CoffeeId!: number ;
   CoffeeName: string="";
   CoffeeManufacturerId : number = 0;
@@ -22,13 +21,9 @@ export class AddEditCoffeeComponent implements OnInit {
   errorMessage: string ="";
   public showError!: boolean;
   ManufacturerList: any[] = [];
-  constructor(private service : SharedService, private formBuilder: FormBuilder,) { }
+  constructor(private service : SharedService) { }
 
   ngOnInit(): void {
-    this.coffeeForm = this.formBuilder.group({  
-      email: [''],
-      password: ['']
-    })
     this.CoffeeId = this.coffee.id;
     this.CoffeeName = this.coffee.name;
     this.CoffeeManufacturerId = this.coffee.manufacturerId;
@@ -42,19 +37,17 @@ export class AddEditCoffeeComponent implements OnInit {
   }
 
   addCoffee(){
-    if(typeof this.CoffeeManufacturerId =='string'){
-      this.CoffeeManufacturerId = 0
-    }
     var val = {
       id:this.CoffeeId,
       name:this.CoffeeName,
-      manufacturerId:this.CoffeeManufacturerId != 0 ? this.CoffeeManufacturerId : 0,
+      manufacturerId:this.CoffeeManufacturerId,
       countryId:this.CoffeeCountryId,
       beansProcessing:this.CoffeeBeansProcessing,
       degreeOfRoasting:this.CoffeeDegreeOfRoasting,
       beanType:this.CoffeeBeanType,
       imgUrl:this.CoffeeImgUrl
     };
+    console.log(this.CoffeeManufacturerId)
     this.service.createCoffee(val).subscribe(()=>{
       alert("Successfully added");
     }, error => {
@@ -93,5 +86,13 @@ export class AddEditCoffeeComponent implements OnInit {
     this.service.getManufacturers().subscribe(data => {
       this.ManufacturerList = data;
     })
+  }
+
+  changeManufacturer($event : number){
+    this.CoffeeManufacturerId = $event
+    console.log(this.CoffeeManufacturerId)
+  }
+  changeCountry($event: number){
+    this.CoffeeCountryId = $event
   }
 }

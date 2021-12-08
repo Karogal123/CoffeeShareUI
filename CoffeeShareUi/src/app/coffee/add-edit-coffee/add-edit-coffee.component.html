@@ -5,37 +5,36 @@
     </div>
     <div class ="col-sm-10">
         <input type="text" class="form-control" [(ngModel)]="CoffeeName" placeholder="Enter coffee name">
-        <select type="text" class="form-control" [(ngModel)]="CoffeeManufacturerId">
+        <select type="number" class="form-control" [(ngModel)]="CoffeeManufacturerId">
             <option value='' disabled selected>Select manufacturer</option>
             <option *ngFor="let manufacturer of ManufacturerList" 
             [value]="manufacturer.id" >{{manufacturer.name}}</option>
         </select>
-        <select type="text" class="form-control" [(ngModel)]="CoffeeCountryId">
-            <option value="" disabled selected>Select country</option>
+        <select type="number" class="form-control" [(ngModel)]="CoffeeCountryId">
+            <option value='' disabled selected>Select country</option>
             <option *ngFor="let country of CountryList" 
             [value]="country.id" >{{country.name}}</option>
         </select>
-        <select type="text" class="form-control" [(ngModel)]="CoffeeBeansProcessing">
+        <select type="number" class="form-control" [(ngModel)]="CoffeeBeansProcessing">
             <option value="" disabled selected>Beans processing method</option>
             <option value="dry">Dry</option>
             <option value="washed">Washed</option>
             <option value="honey">Honey</option>
         </select>
-        <select type="text" class="form-control" [(ngModel)]="CoffeeDegreeOfRoasting">
+        <select type="number" class="form-control" [(ngModel)]="CoffeeDegreeOfRoasting">
             <option value="" disabled selected>Degree Of Roasting</option>
             <option value="light">Light</option>
             <option value="Medium">Medium</option>
             <option value="Dark">Dark</option>
         </select>
-        <select type="text" class="form-control" [(ngModel)]="CoffeeBeanType">
+        <select type="number" class="form-control" [(ngModel)]="CoffeeBeanType">
             <option value="" disabled selected>Beans Type</option>
             <option value="arabica">Arabica</option>
             <option value="robusta">Robusta</option>
         </select>
-        <input type="text" class="form-control" [(ngModel)]="CoffeeImgUrl" placeholder="enter img">
     </div>
 </div>
-<button (click)="addCoffee()" *ngIf="coffee.id==0" [disabled]="!coffee.name" class="btn btn-primary">
+<button (click)="addCoffee()" *ngIf="coffee.id==0" [disabled]="!CoffeeManufacturerId || !CoffeeCountryId || !CoffeeDegreeOfRoasting || !CoffeeBeanType || !CoffeeBeansProcessing || !CoffeeName"   class="btn btn-primary">
     Add
 </button>
 <button (click)="updateCoffee()" *ngIf="coffee.id!=0" class="btn btn-primary">
