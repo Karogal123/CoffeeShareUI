@@ -15,6 +15,9 @@ export class UserService {
   private _authChangeSub = new ReplaySubject<boolean>(1);
   public authChanged = this._authChangeSub.asObservable();
 
+  private _adminChangeSub = new ReplaySubject<boolean>(1);
+  public adminChanged = this._adminChangeSub.asObservable();
+
   constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService, private _jwtHelper: JwtHelperService) { 
   }
 
@@ -30,6 +33,7 @@ export class UserService {
   public logout = () => {
     localStorage.removeItem("token");
     this.sendAuthStateChangeNotification(false);
+    this.sendAdminChangeState(false);
   }
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     this._authChangeSub.next(isAuthenticated);
@@ -47,10 +51,30 @@ export class UserService {
         }),
     };
   };
+
+  public sendAdminChangeState = (isAdmin: boolean) => {
+    this._adminChangeSub.next(isAdmin);
+  }
+
   public isUserAdmin = (): boolean => {
     var token = localStorage.getItem("token");
-    const decodedToken = this._jwtHelper.decodeToken(token!);
+    const decodedToken = this._jwtHelper.decodeToken(token!)!
     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-    return role === 'Admin';
-  } 
+    if(role == 'Admin'){
+      this._adminChangeSub.next(true);
+      return true;
+    }
+    if(role !== 'Admin'){
+      this._adminChangeSub.next(false);
+      return false;
+    }
+    return false;
+} 
+
+ get isUserAdminGetter(): boolean  {
+  var token = localStorage.getItem("token");
+  const decodedToken = this._jwtHelper?.decodeToken(token!) || {};
+  const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+  return role === 'Admin';
+} 
 }

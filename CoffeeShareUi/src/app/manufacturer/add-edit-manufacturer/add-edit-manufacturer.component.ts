@@ -41,6 +41,10 @@ export class AddEditManufacturerComponent implements OnInit {
     };
     this.service.updateManufactutrer(val).subscribe(()=>{
       alert("Successfully updated");
-    });
+    }, error => {
+      this.errorMessage = error.errors;
+      this.showError = true;
+    }
+    );
   }
 }

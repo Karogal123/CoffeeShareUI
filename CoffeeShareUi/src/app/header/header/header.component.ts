@@ -10,11 +10,14 @@ import { UserService } from 'src/app/shared/user.service';
 export class HeaderComponent implements OnInit {
   public isUserAuthenticated: boolean = false;
   public isUserAdmin: boolean = false;
-  constructor(private userService: UserService, private _router: Router) {
+  constructor(public userService: UserService, private _router: Router) {
     this.userService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
+    this.userService.adminChanged
+    .subscribe(res => this.isUserAdmin = res);
+  console.log(this.isUserAdmin)
   }
   
   ngOnInit(): void {
@@ -22,6 +25,10 @@ export class HeaderComponent implements OnInit {
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
+    this.userService.adminChanged
+    .subscribe(res => this.isUserAdmin = res);
+  console.log(this.isUserAdmin)
+    
   }
   public logout = () => {
     this.userService.logout();

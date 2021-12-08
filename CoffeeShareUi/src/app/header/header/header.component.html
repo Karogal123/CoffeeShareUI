@@ -9,14 +9,10 @@
           <a class="nav-link" routerLink="recipes">Recipes</a>
         </li>
       <li class="nav-item active">
-          <a class="nav-link" routerLink="coffees">Coffees</a>
+          <a class="nav-link" *ngIf="userService.isUserAdminGetter" routerLink="coffees">Coffees</a>
         </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="manufacturers">Manufacturers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/privacy']" routerLinkActive="active" 
-          [routerLinkActiveOptions]="{exact: true}"> Privacy </a>
+        <a class="nav-link" *ngIf="userService.isUserAdminGetter"   routerLink="manufacturers">Manufacturers</a>
       </li>
     </ul>
   </div>

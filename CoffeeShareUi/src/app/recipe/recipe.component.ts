@@ -30,7 +30,7 @@ export class RecipeComponent implements OnInit {
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
-  }
+}
 
   refreshRecipeList(){
     this.service.getRecipes().subscribe(data => {
@@ -70,11 +70,10 @@ export class RecipeComponent implements OnInit {
     var CoffeeNameFilter = this.CoffeeNameFilter;
     var selectedIntededUse = this.selectedIntededUse;
     this.RecipeListFiltered = this.RecipeList.filter(function (el : any){
-      return el.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase()
+      return el.coffee.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase()
       )&&el.intendedUse.toString().toLowerCase().includes(selectedIntededUse.toString().trim().toLowerCase())
     });
     console.log(CoffeeNameFilter);
     console.log(selectedIntededUse);
   }
-
 }

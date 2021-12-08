@@ -50,11 +50,11 @@ export class LoginComponent implements OnInit {
     .subscribe(res =>{
       localStorage.setItem("token", res.token);
       this.userService.sendAuthStateChangeNotification(res.isAuthSuccessful);
-      this._router.navigate([this._returnUrl]);
+      this._router.navigate(["/recipes"]);
   },
   error =>{
     this.errorMessage = error;
     this.showError = true;
-  });
+  })
   }
 } 
