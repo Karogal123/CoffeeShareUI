@@ -15,7 +15,8 @@ export class RecipeDetailsComponent implements OnInit {
   public commentBody:any;
   public userScores: any = [];
   public userId: any;
-  public checkuser: boolean = false;
+  public checkuserRecipe: boolean = false;
+  public checkuserComment: boolean = false;
   public overallScore: number = 0;
   constructor(private route: ActivatedRoute,
   private sharedService: SharedService, public userService: UserService, private router:Router) { }
@@ -31,10 +32,10 @@ export class RecipeDetailsComponent implements OnInit {
         this.sharedService.getUserId().subscribe(res => {
           this.userId = res;
           if(this.userId == this.recipe.userId){
-            this.checkuser = true
+            this.checkuserRecipe = true
           }
           else{
-            this.checkuser = false;
+            this.checkuserRecipe = false;
           }
         })
       })
@@ -45,7 +46,6 @@ export class RecipeDetailsComponent implements OnInit {
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
-  this.checkUserId()
 
 }
   addComment(){
@@ -117,16 +117,12 @@ export class RecipeDetailsComponent implements OnInit {
   });
   }
   
-  checkUserId(){
-    this.sharedService.getUserId().subscribe(res =>{
-      this.userId = res;
-      if(this.userId == this.recipe.userId){
-        this.checkuser=true;
-      }
-      else{
-        this.checkuser=false;
-      }
+  deleteComment(comment: any){
+    this.sharedService.deleteComment(comment).subscribe(res => {
+      alert("Successfully deleted");
+      this.refreshCommentList();
     })
   }
+
 
 }

@@ -36,7 +36,7 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/Comments', val, this.generateHeaders());
   }
   deleteComment(val:any){
-    return this.http.delete(this.ApiUrl + '/Comments/', val);
+    return this.http.delete(`${this.ApiUrl}/Comments/${val.id}`, val.id);
   }
   //----Manufacturers
   getManufacturers() : Observable<any[]> {

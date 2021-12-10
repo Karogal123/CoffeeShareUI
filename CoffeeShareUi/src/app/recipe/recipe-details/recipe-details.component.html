@@ -32,7 +32,7 @@
         <div class="steps">
           <p id="preparationSteps"*ngFor="let steps of recipe.recipeBody; let i = index" [attr.data-index] = "i"><a id="listDetails">Step {{i+1}}:</a> {{steps}}</p>
         </div>
-        <button type="button" class="btn btn-danger" (click)="deleteRecipe()" *ngIf="checkuser || userService.isUserAdminGetter">Delete</button>
+        <button type="button" class="btn btn-danger" (click)="deleteRecipe()" *ngIf="checkuserRecipe || userService.isUserAdminGetter">Delete</button>
             <div class="form-group shadow-textarea">
                 <label for="commentBodyArea">Please, leave a comment!</label>
                 <textarea class="form-control z-depth-2" id="commentBodyArea" rows="3" placeholder="Leave your opinion on recipe..." [(ngModel)]="commentBody"></textarea>
@@ -49,6 +49,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center"> 
                       <span><h4>{{comment.user.email | removeDomainFromEmail}}</h4> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
+                      <h3><button type="button" class="btn btn-danger" (click)="deleteComment(comment)" *ngIf="userService.isUserAdminGetter">Delete</button></h3>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
@@ -58,6 +59,5 @@
     </div>
   </div>
   <div class="wrapperRight">
-
   </div>
 </div>
