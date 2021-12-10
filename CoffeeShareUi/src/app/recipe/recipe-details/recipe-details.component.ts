@@ -18,6 +18,8 @@ export class RecipeDetailsComponent implements OnInit {
   public checkuserRecipe: boolean = false;
   public checkuserComment: boolean = false;
   public overallScore: number = 0;
+  errorMessage: string ="";
+  public showError!: boolean;
   constructor(private route: ActivatedRoute,
   private sharedService: SharedService, public userService: UserService, private router:Router) { }
   
@@ -56,8 +58,12 @@ export class RecipeDetailsComponent implements OnInit {
     this.sharedService.createComment(val).subscribe(res=>{
       console.log(res);
       this.refreshCommentList();
-    });
-  }  
+    }, error => {
+      this.errorMessage = error.errors;
+      this.showError = true;
+    }
+    );
+  }
 
   refreshCommentList(){
     this.route.params
