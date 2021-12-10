@@ -49,7 +49,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center"> 
                       <span><h4>{{comment.user.email | removeDomainFromEmail}}</h4> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
-                      <h3><button type="button" class="btn btn-danger" (click)="deleteComment(comment)" *ngIf="userService.isUserAdminGetter">Delete</button></h3>
+                      <h3><button type="button" class="btn btn-danger" (click)="deleteComment(comment)" *ngIf="comment.userId == userId ||userService.isUserAdminGetter">Delete</button></h3>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
