@@ -10,6 +10,7 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class RecipeDetailsComponent implements OnInit {
   @Input() recipe : any;
+  ActiveAddEditRecipe:boolean=false;
   public comments: any = [];
   public isUserAuthenticated: boolean = false;
   public commentBody:any;
@@ -31,6 +32,10 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipe = recipe
         this.recipe.user.email.substring(0, this.recipe.user.email.lastIndexOf('@'));  
         this.recipe.recipeBody = recipe.recipeBody.split('&').filter((e: any) => e)
+        this.recipe.recipeBody = this.recipe.recipeBody.filter(function( element : any ) {
+          return element != 'undefined';
+       });
+        console.log(this.recipe.recipeBody)
         this.sharedService.getUserId().subscribe(res => {
           this.userId = res;
           if(this.userId == this.recipe.userId){
@@ -130,5 +135,10 @@ export class RecipeDetailsComponent implements OnInit {
     })
   }
 
-
+  editClick(){
+    this.ActiveAddEditRecipe=true;
+  }
+  closeClick(){
+    this.ActiveAddEditRecipe=false;
+  }
 }

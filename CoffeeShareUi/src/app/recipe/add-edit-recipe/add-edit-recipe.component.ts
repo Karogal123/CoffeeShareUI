@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared/shared.service';
 
@@ -12,7 +13,7 @@ export class AddEditRecipeComponent implements OnInit {
   errorMessage: string ="";
   public showError!: boolean;
   RecipeName: string="";
-  RecipeBody : string = "";
+  RecipeBody : string ="";
   RecipeUserId : number = 0;
   RecipeIntentedUse: string ="";
   RecipeCoffeeId: string ="";
@@ -30,13 +31,28 @@ export class AddEditRecipeComponent implements OnInit {
   step5: string = "";
   step6: string = "";
   step7: string = "";
+  step8: string = "";
+  step9: string = "";
+  step10: string = "";
   steps: string = "";
+  stepsArray: any[] = [];
   constructor(private service : SharedService) { }
 
   ngOnInit(): void {
+    this.step1 =  this.recipe.recipeBody[0]
+    this.step2 = this.recipe.recipeBody[1]
+    this.step3 = this.recipe.recipeBody[2]
+    this.step4 = this.recipe.recipeBody[3]
+    this.step5 = this.recipe.recipeBody[4]
+    this.step6 = this.recipe.recipeBody[5]
+    this.step7 = this.recipe.recipeBody[6]
+    this.step8 = this.recipe.recipeBody[7]
+    this.step9 = this.recipe.recipeBody[8]
+    this.step10 = this.recipe.recipeBody[9]
     this.RecipeId = this.recipe.id;
     this.RecipeName = this.recipe.name;
     this.RecipeBody = this.recipe.recipeBody;
+    console.log(this.recipe.recipeBody)
     this.RecipeUserId = this.recipe.userId;
     this.RecipeIntentedUse = this.recipe.intendedUse;
     this.RecipeCoffeeId = this.recipe.coffeeId;
@@ -56,7 +72,7 @@ export class AddEditRecipeComponent implements OnInit {
 }
 
   addRecipe(){
-    this.steps = this.step1 + '&' + this.step2 + '&' + this.step3 + '&' + this.step4 + '&' + this.step5 + '&' + this.step6 + '&' + this.step7 + '&'
+    this.steps = this.step1 + '&' + this.step2 + '&' + this.step3 + '&' + this.step4 + '&' + this.step5 + '&' + this.step6 + '&' + this.step7 + '&' + this.step8 + '&' + this.step9 + '&' + this.step10 + '&';
     this.RecipeBody = this.steps
     var val = {
       id:this.RecipeId,
@@ -70,7 +86,6 @@ export class AddEditRecipeComponent implements OnInit {
       waterTemperature:this.RecipeWaterTemperature,
       coffeeAmount:this.RecipeCoffeeAmount
     };
-    var arr = this.steps.split('&');
     this.service.createRecipe(val).subscribe(()=>{
       alert("Successfully updated");
     }, error => {
@@ -81,6 +96,8 @@ export class AddEditRecipeComponent implements OnInit {
     );
   }
   updateRecipe(){
+    this.steps = this.step1 + '&' + this.step2 + '&' + this.step3 + '&' + this.step4 + '&' + this.step5 + '&' + this.step6 + '&' + this.step7 + '&' + this.step8 + '&' + this.step9 + '&' + this.step10 + '&';
+    this.RecipeBody = this.steps
     var val = {
       id:this.RecipeId,
       name:this.RecipeName,
@@ -106,7 +123,6 @@ export class AddEditRecipeComponent implements OnInit {
     this.service.getCoffees().subscribe(data => {
       this.CoffeeList = data;
       this.formatArray();
-      console.log(this.groupedArray);
     })
   }
 }
