@@ -65,7 +65,7 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/Recipes', val, this.generateHeaders());
   }
   deleteRecipe(val:any){
-    return this.http.delete(this.ApiUrl + '/Recipes/', val);
+    return this.http.delete(`${this.ApiUrl}/Recipes/${val}`, val);
   }
   updateRecipe(val:any){
     return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val);
@@ -80,14 +80,10 @@ export class SharedService {
   updateRecipeScore(val:any){
     return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
   }
-  //----Tags
-  getTags() : Observable<any[]>{
-    return this.http.get<any[]>(this.ApiUrl + '/Tags');
+
+  public getUserId(){
+    return this.http.get<any>(this.ApiUrl + '/users/GetUserId', this.generateHeaders());
   }
-
-
-
-
 
   private generateHeaders = () => {
     return {

@@ -1,44 +1,54 @@
-
-<div class="wrapper2"> 
-        <div class="title">  <blockquote><h2>{{recipe.name}}</h2></blockquote> </div>
-       <div class="Ingredients">   <br><br><blockquote><p><b>Needed:</b></p></blockquote>
-          <ul>
+<div class="wrapper2">
+  <div class="title">  
+      <blockquote><h2>{{recipe.name}}</h2></blockquote> 
+  </div>
+  <div class="wrapperLeft">
+      <blockquote><p id="neededTitle">Needed</p></blockquote>
+        <ul id="neededList">
           <i> 
-      <li>Coffee: {{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}} - {{recipe.coffeeAmount}}</li>
-      <li>Inteded use: {{recipe.intendedUse}}</li> 
-      <li>Grind: {{recipe.grindLevel}}</li> 
-      <li>Water: {{recipe.waterAmount}} ml / {{recipe.waterTemperature}} °C</li>
-            </i>
-          </ul>
-         </div>
-         <div class="Preparation" >
-           <blockquote><div id="mydiv"><b>Preparation</b><a></a></div></blockquote>
-          <ol>
-           <li><span><p style="font-size:20px;" *ngFor="let steps of recipe.recipeBody; let i = index" [attr.data-index] = "i">Step {{i+1}}: {{steps}}</p></span></li>
-      </ol>
-      <ng-template #t let-fill="fill">
-        <span class="star" [class.full]="fill === 100">
-          <span class="half" [style.width.%]="fill">&#9734;</span>&#9734;
-        </span>
-      </ng-template>
-      <div style="font-size: x-large; color: orange;"><ngb-rating [max]="5" [(rate)]="overallScore" [starTemplate]="t" [readonly]="false" (rateChange)='onRateChange(overallScore)'></ngb-rating></div>
-      </div>
-</div>
-<div class="class" *ngFor="let user of userScores">{{user.score}} - {{overallScore | number: '1.2-2'}}</div>
-<div class="container mt-5">
-
+              <li><a id="listDetails">Coffee: </a>{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}} - {{recipe.coffeeAmount}}</li>
+              <li><a id="listDetails">Inteded use: </a>{{recipe.intendedUse}}</li> 
+              <li><a id="listDetails">Grind: </a>{{recipe.grindLevel}}</li> 
+              <li><a id="listDetails">Water: </a>{{recipe.waterAmount}} ml / {{recipe.waterTemperature}} °C</li>
+          </i>
+        </ul>
+  </div>
+  <div class="wrapperCentral">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
+          <div class="preparationAndStars">
+            <div class="preparationAndStarsLeft">
+                <blockquote><div id="mydiv">Preparation</div></blockquote>
+            </div>
+            <div class="preparationAndStarsRight">
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&#9734;</span>&#9734;
+                    </span>
+                </ng-template>
+                <div class="starsDetails"><ngb-rating [max]="5" [(rate)]="overallScore" [starTemplate]="t" [readonly]="false" (rateChange)='onRateChange(overallScore)'></ngb-rating></div> 
+            </div>
+        </div> 
+        <div class="steps">
+          <p id="preparationSteps"*ngFor="let steps of recipe.recipeBody; let i = index" [attr.data-index] = "i"><a id="listDetails">Step {{i+1}}:</a> {{steps}}</p>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="deleteRecipe()" *ngIf="checkuser || userService.isUserAdminGetter">Delete</button>
             <div class="form-group shadow-textarea">
-                <label for="commentBodyArea">Leave a comment</label>
+                <label for="commentBodyArea">Please, leave a comment!</label>
                 <textarea class="form-control z-depth-2" id="commentBodyArea" rows="3" placeholder="Leave your opinion on recipe..." [(ngModel)]="commentBody"></textarea>
-                <button type="button" class="btn btn-primary" (click)="addComment()">Send</button>
+                <div class="sendButton">
+                  <div class="sendButtonLeft"></div>
+                  <div class="sendButtonRight">
+                    <button type="button" class="btn btn-primary" (click)="addComment()">Send</button>
+                  </div>
+                </div>
               </div>
             <div class="headings d-flex justify-content-between align-items-center mb-3">
             </div>
             <div class="card p-3 mt-2" *ngFor="let comment of comments">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="user d-flex flex-row align-items-center"> <span><h2 class="font-weight-bold text-primary">{{comment.user.email | removeDomainFromEmail}}</h2> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
+                    <div class="user d-flex flex-row align-items-center"> 
+                      <span><h4>{{comment.user.email | removeDomainFromEmail}}</h4> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
@@ -46,4 +56,8 @@
             </div>
         </div>
     </div>
+  </div>
+  <div class="wrapperRight">
+
+  </div>
 </div>

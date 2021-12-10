@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoffeeComponent } from './coffee/coffee.component';
-import { TagsComponent } from './tags/tags.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +28,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    TagsComponent,
     CoffeeComponent,
     RecipeComponent,
     HeaderComponent,

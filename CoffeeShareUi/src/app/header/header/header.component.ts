@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
     })
     this.userService.adminChanged
     .subscribe(res => this.isUserAdmin = res);
-  console.log(this.isUserAdmin)
   }
   
   ngOnInit(): void {
@@ -27,7 +26,6 @@ export class HeaderComponent implements OnInit {
     })
     this.userService.adminChanged
     .subscribe(res => this.isUserAdmin = res);
-  console.log(this.isUserAdmin)
     
   }
   public logout = () => {

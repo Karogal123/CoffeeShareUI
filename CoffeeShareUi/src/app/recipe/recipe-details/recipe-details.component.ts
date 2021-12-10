@@ -14,9 +14,11 @@ export class RecipeDetailsComponent implements OnInit {
   public isUserAuthenticated: boolean = false;
   public commentBody:any;
   public userScores: any = [];
+  public userId: any;
+  public checkuser: boolean = false;
   public overallScore: number = 0;
   constructor(private route: ActivatedRoute,
-  private sharedService: SharedService, private userService: UserService, private router:Router) { }
+  private sharedService: SharedService, public userService: UserService, private router:Router) { }
   
   ngOnInit(): void {
     this.route.params
@@ -26,7 +28,15 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipe = recipe
         this.recipe.user.email.substring(0, this.recipe.user.email.lastIndexOf('@'));  
         this.recipe.recipeBody = recipe.recipeBody.split('&').filter((e: any) => e)
-        console.log(this.recipe.recipeBody)
+        this.sharedService.getUserId().subscribe(res => {
+          this.userId = res;
+          if(this.userId == this.recipe.userId){
+            this.checkuser = true
+          }
+          else{
+            this.checkuser = false;
+          }
+        })
       })
     });
     this.getRating();
@@ -35,6 +45,7 @@ export class RecipeDetailsComponent implements OnInit {
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
+  this.checkUserId()
 
 }
   addComment(){
@@ -44,8 +55,8 @@ export class RecipeDetailsComponent implements OnInit {
     };
     this.sharedService.createComment(val).subscribe(res=>{
       console.log(res);
+      this.refreshCommentList();
     });
-    this.refreshCommentList();
   }  
 
   refreshCommentList(){
@@ -71,7 +82,9 @@ export class RecipeDetailsComponent implements OnInit {
 
   getRecipe() : void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.sharedService.getRecipeById(id).subscribe(recipe => this.recipe = recipe);
+    this.sharedService.getRecipeById(id).subscribe(recipe => {{
+      this.recipe = recipe
+    }});
   }
   sumRatingValues(){
     this.overallScore = this.userScores.reduce((total: any, next: { score: any; }) => total + next.score, 0) / this.userScores.length;
@@ -91,4 +104,29 @@ export class RecipeDetailsComponent implements OnInit {
       this.getRating();
     })
   }
+
+
+  deleteRecipe(){
+    this.route.params
+    .subscribe((params: Params) => {
+      const id : number = params['id'];
+      this.sharedService.deleteRecipe(id).subscribe(()=>{
+        alert("Successfully deleted");
+        this.router.navigate(["/recipes"])
+      })
+  });
+  }
+  
+  checkUserId(){
+    this.sharedService.getUserId().subscribe(res =>{
+      this.userId = res;
+      if(this.userId == this.recipe.userId){
+        this.checkuser=true;
+      }
+      else{
+        this.checkuser=false;
+      }
+    })
+  }
+
 }

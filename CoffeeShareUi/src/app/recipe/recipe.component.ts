@@ -73,7 +73,5 @@ export class RecipeComponent implements OnInit {
       return el.coffee.name.toString().toLowerCase().includes(CoffeeNameFilter.toString().trim().toLowerCase()
       )&&el.intendedUse.toString().toLowerCase().includes(selectedIntededUse.toString().trim().toLowerCase())
     });
-    console.log(CoffeeNameFilter);
-    console.log(selectedIntededUse);
   }
 }

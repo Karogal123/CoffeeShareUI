@@ -30,6 +30,7 @@ export class UserService {
   private createCompleteRoute = (route: string, envAddress: string) => {
     return `${envAddress}/${route}`;
   }
+  
   public logout = () => {
     localStorage.removeItem("token");
     this.sendAuthStateChangeNotification(false);
@@ -76,5 +77,5 @@ export class UserService {
   const decodedToken = this._jwtHelper?.decodeToken(token!) || {};
   const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
   return role === 'Admin';
-} 
+}
 }

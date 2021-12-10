@@ -8,7 +8,6 @@ import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.c
 import { RecipeComponent } from './recipe/recipe.component';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { TagsComponent } from './tags/tags.component';
 
 const routes: Routes = [
   {path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
@@ -16,7 +15,6 @@ const routes: Routes = [
   {path:'recipes', component: RecipeComponent},
   {path: 'recipe/:id', component: RecipeDetailsComponent},
   {path:'manufacturers', component: ManufacturerComponent, canActivate: [AuthGuard, AdminGuard] },
-  {path:'tags', component: TagsComponent},
   {path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'forbidden', component: ForbiddenComponent },
   {path: '', redirectTo: '/recipes', pathMatch: 'full' },
