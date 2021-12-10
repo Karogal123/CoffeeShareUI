@@ -140,5 +140,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
   closeClick(){
     this.ActiveAddEditRecipe=false;
+    window.location.reload();
   }
 }
