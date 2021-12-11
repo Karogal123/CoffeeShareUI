@@ -21,7 +21,7 @@
           <option value="MokaPot">MokaPot</option>
       </select>
        <div class="headerAndButtonRight">
-         <button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addClick()" data-backdrop="static" data-keyboard="false">
+         <button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addClick()" data-backdrop="static" data-keyboard="false" *ngIf="isUserAuthenticated">
            Add Recipe
          </button>
      
