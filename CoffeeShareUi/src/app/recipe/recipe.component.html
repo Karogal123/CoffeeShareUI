@@ -8,40 +8,45 @@
            <a>Recipes</a>
          </header>
        </div>
-       <div class="headerAndButtonCentral">
-        <input [(ngModel)] = "CoffeeNameFilter" class="form-control" (keyup)="Filterfn()" placeholder="Search your coffee">
-       </div>
-       <select [(ngModel)]="selectedIntededUse" (change)="Filterfn()">
-        <option value="" selected>Any</option>
-          <option value="Espresso">Espresso</option>
-          <option value="Aeropress">Aeropress</option>
-          <option value="FrenchPress">FrenchPress</option>
-          <option value="Chemex">Chemex</option>
-          <option value="Dripper">Dripper</option>
-          <option value="MokaPot">MokaPot</option>
-      </select>
        <div class="headerAndButtonRight">
-         <button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addClick()" data-backdrop="static" data-keyboard="false" *ngIf="isUserAuthenticated">
-           Add Recipe
-         </button>
-     
-         <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered modal-xl">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                 (click)="closeClick()" (click)="refreshRecipeList()">
-               </button>
-               </div>
-               <div class="modal-body">
-                 <app-add-edit-recipe [recipe]="recipe" *ngIf="ActiveAddEdditRecipe"></app-add-edit-recipe>
-               </div>
-             </div>
-           </div>
-         </div>
+        <button type="button" class="buttonAdd"data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addClick()" data-backdrop="static" data-keyboard="false" *ngIf="isUserAuthenticated">
+          Add Recipe
+        </button>
+        <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                <button type="button" class="buttonClose" data-bs-dismiss="modal" aria-label="Close"
+                (click)="closeClick()" (click)="refreshRecipeList()">x
+              </button>
+              </div>
+              <div class="modal-body">
+                <app-add-edit-recipe [recipe]="recipe" *ngIf="ActiveAddEdditRecipe"></app-add-edit-recipe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+
+     <div class="inputAndSelect">
+       <div class="inputLeft">
+          <input [(ngModel)] = "CoffeeNameFilter" (keyup)="Filterfn()" placeholder="Search your coffee">
+       </div>
+       <div class="selectRight">
+        <select [(ngModel)]="selectedIntededUse" (change)="Filterfn()">
+          <option value="" selected>Any</option>
+            <option value="Espresso">Espresso</option>
+            <option value="Aeropress">Aeropress</option>
+            <option value="FrenchPress">FrenchPress</option>
+            <option value="Chemex">Chemex</option>
+            <option value="Dripper">Dripper</option>
+            <option value="MokaPot">MokaPot</option>
+        </select>
        </div>
      </div>
+     
    
      
    <div class="columns">
@@ -56,7 +61,7 @@
        <a class="columnBrandAndName">{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}}</a>
        
      </div>
-   </div>	
+   </div>    
  </div>
  
  </div>

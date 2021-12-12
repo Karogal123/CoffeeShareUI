@@ -1,22 +1,20 @@
 <div class="form-froup row">
 
-    <div *ngIf="showError" class="alert alert-danger" role="alert">
-        <span *ngFor="let errorMes of errorMessage">{{errorMes}}<br></span>
-    </div>
-    <div class ="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="RecipeName" placeholder="Enter recipe name">
-        <input class="form-control" [(ngModel)]="step1" placeholder="step1">
-        <input class="form-control" [(ngModel)]="step2" placeholder="step2">
-        <input class="form-control" [(ngModel)]="step3" placeholder="step3">
-        <input class="form-control" [(ngModel)]="step4" placeholder="step4">
-        <input class="form-control" [(ngModel)]="step5" placeholder="step5">
-        <input class="form-control" [(ngModel)]="step6" placeholder="step6">
-        <input class="form-control" [(ngModel)]="step7" placeholder="step7">
-        <input class="form-control" [(ngModel)]="step8" placeholder="step8">
-        <input class="form-control" [(ngModel)]="step9" placeholder="step9">
-        <input class="form-control" [(ngModel)]="step10" placeholder="step10">
     
-        <select type="number" class="form-control" [(ngModel)]="RecipeIntentedUse">
+    <div class ="addRecipeWindow">
+        <input type="text" class="form-control" [(ngModel)]="RecipeName" placeholder="Enter recipe name">
+        <input class="steps" [(ngModel)]="step1" placeholder="step1">
+        <input class="steps" [(ngModel)]="step2" placeholder="step2">
+        <input class="steps" [(ngModel)]="step3" placeholder="step3">
+        <input class="steps" [(ngModel)]="step4" placeholder="step4">
+        <input class="steps" [(ngModel)]="step5" placeholder="step5">
+        <input class="steps" [(ngModel)]="step6" placeholder="step6">
+        <input class="steps" [(ngModel)]="step7" placeholder="step7">
+        <input class="steps" [(ngModel)]="step8" placeholder="step8">
+        <input class="steps" [(ngModel)]="step9" placeholder="step9">
+        <input class="steps" [(ngModel)]="step10" placeholder="step10">
+    
+        <select type="text"  [(ngModel)]="RecipeIntentedUse">
             <option value="" disabled selected>Intended Use</option>
             <option value="Espresso">Espresso</option>
             <option value="Aeropress">Aeropress</option>
@@ -25,15 +23,15 @@
             <option value="Dripper">Dripper</option>
             <option value="MokaPot">MokaPot</option>
         </select>
-        <select type="number" class="form-control" [(ngModel)]="RecipeGrindLevel">
+        <select type="text"  [(ngModel)]="RecipeGrindLevel">
             <option value="" disabled selected>Grind Level</option>
             <option value="Fine">Fine</option>
             <option value="Coarse">Coarse</option>
         </select>
-        <input type="number" class="form-control" [(ngModel)]="RecipeCoffeeAmount" placeholder="Enter amount of coffee needed">
-        <input type="number" class="form-control" [(ngModel)]="RecipeWaterAmount" placeholder="Enter water amount">
-        <input type="number" class="form-control" [(ngModel)]="RecipeWaterTemperature" placeholder="Enter water temperature">
-        <select id="coffeeManufacturer" class="form-control"
+        <input type="text"  [(ngModel)]="RecipeCoffeeAmount" placeholder="Enter amount of coffee needed (grams)">
+        <input type="text"  [(ngModel)]="RecipeWaterAmount" placeholder="Enter water amount (ml)">
+        <input type="text"  [(ngModel)]="RecipeWaterTemperature" placeholder="Enter water temperature °C">
+        <select id="coffeeManufacturer" 
         name="coffeeManufacturer" [(ngModel)] = "RecipeCoffeeId">
         <option value="" disabled selected>Coffee</option>
             <optgroup [attr.label]="coffee.name" *ngFor="let coffee of groupedArray">
@@ -45,9 +43,9 @@
         </select>
     </div>
 </div>
-<button (click)="addRecipe()" *ngIf="recipe.id==0" [disabled]="!RecipeName || !RecipeIntentedUse || !RecipeCoffeeId || !RecipeWaterAmount || !RecipeWaterTemperature || !RecipeGrindLevel" class="btn btn-primary">
+<button (click)="addRecipe()" *ngIf="recipe.id==0" [disabled]="!RecipeName || !RecipeIntentedUse || !RecipeCoffeeId || !RecipeWaterAmount || !RecipeWaterTemperature || !RecipeGrindLevel">
     Add
 </button>
-<button (click)="updateRecipe()" *ngIf="recipe.id!=0" class="btn btn-primary">
+<button (click)="updateRecipe()" *ngIf="recipe.id!=0">
     Update
 </button>

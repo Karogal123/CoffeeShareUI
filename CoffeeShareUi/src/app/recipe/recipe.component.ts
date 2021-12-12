@@ -45,6 +45,7 @@ export class RecipeComponent implements OnInit {
       recipeBody:"",
       userId:"",
       intendedUse:"",
+      grindLevel: "",
       coffeeId:""
     }
     this.ModalTitle="Add recipe";
