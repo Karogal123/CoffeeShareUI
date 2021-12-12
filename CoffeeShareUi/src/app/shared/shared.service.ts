@@ -10,19 +10,19 @@ export class SharedService {
   constructor(private http: HttpClient) { }
 
   getCoffees() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Coffee');
+    return this.http.get<any>(this.ApiUrl + '/Coffee', this.generateHeaders());
   }
   getCoffeeById(val:any){
     return this.http.get<any>(this.ApiUrl + '/Coffee/', val);
   }
   createCoffee(val:any) {
-    return this.http.post(this.ApiUrl + '/Coffee', val);
+    return this.http.post(this.ApiUrl + '/Coffee', val, this.generateHeaders());
   }
   deleteCoffee(val:any){
-    return this.http.delete(`${this.ApiUrl}/Coffee/${val.id}`, val.id);
+    return this.http.delete(`${this.ApiUrl}/Coffee/${val.id}`, this.generateHeaders());
   }
   updateCoffee(val:any){
-    return this.http.put(`${this.ApiUrl}/Coffee/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/Coffee/${val.id}`, val, this.generateHeaders());
   }
   //----Countries
   getCountries() : Observable<any[]> {
@@ -36,39 +36,36 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/Comments', val, this.generateHeaders());
   }
   deleteComment(val:any){
-    return this.http.delete(`${this.ApiUrl}/Comments/${val.id}`, val.id);
+    return this.http.delete(`${this.ApiUrl}/Comments/${val.id}`, this.generateHeaders());
   }
   //----Manufacturers
   getManufacturers() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Manufacturers')
-  }
-  getManufacturerById(val:any){
-    return this.http.get<any>(this.ApiUrl + '/Manufacturers/', val);
+    return this.http.get<any>(this.ApiUrl + '/Manufacturers', this.generateHeaders())
   }
   createManufacturer(val:any) {
-    return this.http.post(this.ApiUrl + '/Manufacturers', val);
+    return this.http.post(this.ApiUrl + '/Manufacturers', val, this.generateHeaders());
   }
   deleteManufacturer(val:any){
-    return this.http.delete(`${this.ApiUrl}/Manufacturers/${val.id}`, val.id);
+    return this.http.delete(`${this.ApiUrl}/Manufacturers/${val.id}`, this.generateHeaders());
   }
   updateManufactutrer(val:any){
-    return this.http.put(`${this.ApiUrl}/Manufacturers/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/Manufacturers/${val.id}`, val, this.generateHeaders());
   }
   //----Recipes
   getRecipes() : Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/Recipes')
+    return this.http.get<any>(this.ApiUrl + '/Recipes', this.generateHeaders())
   }
   getRecipeById(val:any){
-    return this.http.get<any>(`${this.ApiUrl}/Recipes/GetById/${val}`);
+    return this.http.get<any>(`${this.ApiUrl}/Recipes/GetById/${val}`, this.generateHeaders());
   }
   createRecipe(val:any) {
     return this.http.post(this.ApiUrl + '/Recipes', val, this.generateHeaders());
   }
   deleteRecipe(val:any){
-    return this.http.delete(`${this.ApiUrl}/Recipes/${val}`, val);
+    return this.http.delete(`${this.ApiUrl}/Recipes/${val}`, this.generateHeaders());
   }
   updateRecipe(val:any){
-    return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/Recipes/${val.id}`, val, this.generateHeaders());
   }
   //----RecipesScore
   getRecipesScoresForRecipe(val: any){
@@ -78,7 +75,7 @@ export class SharedService {
     return this.http.post(this.ApiUrl + '/RecipesScores', val, this.generateHeaders());
   }
   updateRecipeScore(val:any){
-    return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val);
+    return this.http.put(`${this.ApiUrl}/RecipesScores/${val.id}`, val, this.generateHeaders());
   }
 
   public getUserId(){

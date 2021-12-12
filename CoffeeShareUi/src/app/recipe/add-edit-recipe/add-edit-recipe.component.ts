@@ -13,11 +13,11 @@ export class AddEditRecipeComponent implements OnInit {
   errorMessage: string ="";
   public showError!: boolean;
   RecipeName: string="";
+  RecipeGrindLevel: string ="";
   RecipeBody : string ="";
   RecipeUserId : number = 0;
   RecipeIntentedUse: string ="";
   RecipeCoffeeId: string ="";
-  RecipeGrindLevel: string ="";
   RecipeWaterAmount: number = 0;
   RecipeCoffeeAmount: number = 0;
   RecipeWaterTemperature: number = 0;
@@ -52,11 +52,10 @@ export class AddEditRecipeComponent implements OnInit {
     this.RecipeId = this.recipe.id;
     this.RecipeName = this.recipe.name;
     this.RecipeBody = this.recipe.recipeBody;
-    console.log(this.recipe.recipeBody)
+    this.RecipeGrindLevel = this.recipe.grindLevel;
     this.RecipeUserId = this.recipe.userId;
     this.RecipeIntentedUse = this.recipe.intendedUse;
     this.RecipeCoffeeId = this.recipe.coffeeId;
-    this.RecipeGrindLevel = this.recipe.grindLevel;
     this.RecipeWaterAmount = this.recipe.waterAmount;
     this.RecipeWaterTemperature = this.recipe.waterTemperature;
     this.RecipeCoffeeAmount = this.recipe.coffeeAmount;
@@ -87,7 +86,7 @@ export class AddEditRecipeComponent implements OnInit {
       coffeeAmount:this.RecipeCoffeeAmount
     };
     this.service.createRecipe(val).subscribe(()=>{
-      alert("Successfully updated");
+      alert("Successfully added");
     }, error => {
       this.errorMessage = error.errors;
       this.showError = true;
@@ -115,7 +114,6 @@ export class AddEditRecipeComponent implements OnInit {
     }, error => {
       this.errorMessage = error.errors;
       this.showError = true;
-      console.log(this.errorMessage)
     }
     );
   }

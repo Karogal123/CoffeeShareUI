@@ -35,7 +35,6 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipe.recipeBody = this.recipe.recipeBody.filter(function( element : any ) {
           return element != 'undefined';
        });
-        console.log(this.recipe.recipeBody)
         this.sharedService.getUserId().subscribe(res => {
           this.userId = res;
           if(this.userId == this.recipe.userId){
@@ -56,6 +55,10 @@ export class RecipeDetailsComponent implements OnInit {
 
 }
   addComment(){
+    if(this.isUserAuthenticated == false){
+      this.router.navigate(["/authentication/login"])
+      return
+    }
     var val = {
       commentBody:this.commentBody,
       recipeId:this.recipe.id
@@ -86,6 +89,9 @@ export class RecipeDetailsComponent implements OnInit {
       const id = params['id'];
       this.sharedService.getRecipesScoresForRecipe(id).subscribe(scores =>{
         this.userScores = scores;
+        if(this.userScores == 0){
+          return
+        }
         this.overallScore = this.sumRatingValues()
       })
   });
@@ -111,7 +117,6 @@ export class RecipeDetailsComponent implements OnInit {
       score : rating
     };
     this.sharedService.createRecipeScore(val).subscribe(result => {
-      console.log(result);
       this.getRating();
     })
   }

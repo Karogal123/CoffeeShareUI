@@ -1,15 +1,76 @@
+.header{
+    display: block;
+    background-color: #6F4E37;
+    width: auto;
+    height: 80px;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+p#items.logo{
+    height: 80px;
+}
+
+#items{
+    float: left;
+}
+
+
 a{
-    font-style: italic;
-    color: white;
+    line-height: 60px;
+    font-size: 18px;
+    color: #ffffff;
+    
 }
 
-
-#navbarNavDropdownLeft{
-   width: 90%; 
+a:hover, a:focus{
+    color: rgb(250, 235, 208);
 }
 
-#navbarNavDropdownRight{
-    width: 10%;
-    float:right;
+.headerLeft{
+    display: block;
+    float: left;
+    width: 60%;
+    height: 80px;
+}
+
+.headerRight{
+    display: block;
+    float: right;
+    width: 40%;
     text-align: right;
+    height: 80px;
+}
+
+
+#itemRegister, #itemLogout{
+    display: block;
+    text-decoration: none;
+    padding-right: 15px;
+}
+
+#itemLogout{
+    display: block;
+    height: 80px;
+    float: right;
+    width: auto;
+}
+
+#itemRegister{
+    width: 13%;
+    float: right;
+    height: 80px;
+    line-height: 78px;
+}
+
+#itemLogin{
+    display: block;
+    text-decoration: none;
+    width: 40%;
+    float: right;
+    height: 80px;
+    line-height: 78px;
 }

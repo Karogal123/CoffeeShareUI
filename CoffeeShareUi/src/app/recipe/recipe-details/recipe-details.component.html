@@ -1,15 +1,15 @@
 <div class="wrapper2">
   <div class="title">  
-      <blockquote><h2>{{recipe.name}}</h2></blockquote> 
+      <blockquote><h2>{{recipe?.name}}</h2></blockquote> 
   </div>
   <div class="wrapperLeft">
       <blockquote><p id="neededTitle">Needed</p></blockquote>
         <ul id="neededList">
           <i> 
-              <li><a id="listDetails">Coffee: </a>{{recipe.coffee.manufacturer.name}} - {{recipe.coffee.name}} - {{recipe.coffeeAmount}}</li>
-              <li><a id="listDetails">Inteded use: </a>{{recipe.intendedUse}}</li> 
-              <li><a id="listDetails">Grind: </a>{{recipe.grindLevel}}</li> 
-              <li><a id="listDetails">Water: </a>{{recipe.waterAmount}} ml / {{recipe.waterTemperature}} °C</li>
+              <li><a id="listDetails">Coffee: </a>{{recipe?.coffee.manufacturer.name}} - {{recipe?.coffee.name}} - {{recipe?.coffeeAmount}}</li>
+              <li><a id="listDetails">Inteded use: </a>{{recipe?.intendedUse}}</li> 
+              <li><a id="listDetails">Grind: </a>{{recipe?.grindLevel}}</li> 
+              <li><a id="listDetails">Water: </a>{{recipe?.waterAmount}} ml / {{recipe?.waterTemperature}} °C</li>
           </i>
         </ul>
   </div>
@@ -30,7 +30,7 @@
             </div>
         </div> 
         <div class="steps">
-          <p id="preparationSteps"*ngFor="let steps of recipe.recipeBody; let i = index" [attr.data-index] = "i"><a id="listDetails">Step {{i+1}}:</a> {{steps}}</p>
+          <p id="preparationSteps"*ngFor="let steps of recipe?.recipeBody; let i = index" [attr.data-index] = "i"><a id="listDetails">Step {{i+1}}:</a> {{steps}}</p>
         </div>
         <button type="button" class="btn btn-danger" (click)="deleteRecipe()" *ngIf="checkuserRecipe || userService.isUserAdminGetter">Delete</button>
 
@@ -54,7 +54,7 @@
         <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" 
                 (click)="editClick()" 
                 data-backdrop="static" 
-                data-keyboard="false" >update recipe</button>
+                data-keyboard="false"  *ngIf="checkuserRecipe" >Update recipe</button>
 
 
             <div class="form-group shadow-textarea">
