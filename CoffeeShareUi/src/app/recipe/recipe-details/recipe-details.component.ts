@@ -66,11 +66,13 @@ export class RecipeDetailsComponent implements OnInit {
     this.sharedService.createComment(val).subscribe(res=>{
       console.log(res);
       this.refreshCommentList();
+      this.commentBody="";
     }, error => {
       this.errorMessage = error.errors;
       this.showError = true;
     }
     );
+
   }
 
   refreshCommentList(){

@@ -6,7 +6,7 @@
       <blockquote><p id="neededTitle">Needed</p></blockquote>
         <ul id="neededList">
           <i> 
-              <li><a id="listDetails">Coffee: </a>{{recipe?.coffee.manufacturer.name}} - {{recipe?.coffee.name}} - {{recipe?.coffeeAmount}}</li>
+              <li><a id="listDetails">Coffee: </a>{{recipe?.coffee.manufacturer.name}} - {{recipe?.coffee.name}} - {{recipe?.coffeeAmount}}g</li>
               <li><a id="listDetails">Inteded use: </a>{{recipe?.intendedUse}}</li> 
               <li><a id="listDetails">Grind: </a>{{recipe?.grindLevel}}</li> 
               <li><a id="listDetails">Water: </a>{{recipe?.waterAmount}} ml / {{recipe?.waterTemperature}} °C</li>
@@ -32,7 +32,18 @@
         <div class="steps">
           <p id="preparationSteps"*ngFor="let steps of recipe?.recipeBody; let i = index" [attr.data-index] = "i"><a id="listDetails">Step {{i+1}}:</a> {{steps}}</p>
         </div>
-        <button type="button" class="btn btn-danger" (click)="deleteRecipe()" *ngIf="checkuserRecipe || userService.isUserAdminGetter">Delete</button>
+        <div class="buttons">
+          <div class="buttonLeft">
+            <button type="button" class="buttonUpdateRecipe" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                (click)="editClick()" 
+                data-backdrop="static" 
+                data-keyboard="false"  *ngIf="checkuserRecipe" >Update recipe</button>
+          </div>
+          <div class="buttonRight">
+            <button type="button" class="buttonDelete" (click)="deleteRecipe()" *ngIf="checkuserRecipe || userService.isUserAdminGetter">Delete</button>
+          </div>
+        </div>
+        
 
 
         <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,11 +62,6 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" 
-                (click)="editClick()" 
-                data-backdrop="static" 
-                data-keyboard="false"  *ngIf="checkuserRecipe" >Update recipe</button>
-
 
             <div class="form-group shadow-textarea">
                 <label for="commentBodyArea">Please, leave a comment!</label>
@@ -63,7 +69,7 @@
                 <div class="sendButton">
                   <div class="sendButtonLeft"></div>
                   <div class="sendButtonRight">
-                    <button type="button" class="btn btn-primary" (click)="addComment()">Send</button>
+                    <button type="button" class="buttonSend" (click)="addComment()">Send</button>
                   </div>
                 </div>
               </div>
@@ -76,7 +82,10 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user d-flex flex-row align-items-center"> 
                       <span><h4>{{comment.user.email | removeDomainFromEmail}}</h4> <h3>{{comment.commentBody}} </h3></span> </div> <h3>{{comment.createdDate | date:'dd/MM/yyyy HH:mm'}}</h3>
-                      <h3><button type="button" class="btn btn-danger" (click)="deleteComment(comment)" *ngIf="comment.userId == userId ||userService.isUserAdminGetter">Delete</button></h3>
+          
+                </div>
+                <div class="buttonDeleteComment">
+                  <button type="button" class="buttonDelete" (click)="deleteComment(comment)" *ngIf="comment.userId == userId ||userService.isUserAdminGetter">Delete</button>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>

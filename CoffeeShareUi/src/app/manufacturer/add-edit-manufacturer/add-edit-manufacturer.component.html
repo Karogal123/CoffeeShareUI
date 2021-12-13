@@ -1,15 +1,15 @@
 <div class="form-froup row">
-
     <div *ngIf="showError" class="alert alert-danger" role="alert">
         <span *ngFor="let errorMes of errorMessage">{{errorMes}}<br></span>
     </div>
-    <div class ="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="ManufacturerName" placeholder="Enter manufacturer name">
+    
+    <div class ="addRecipeWindow">
+        <input type="text" [(ngModel)]="ManufacturerName" placeholder="Enter manufacturer name">
     </div>
 </div>
-<button (click)="addManufacturer()" *ngIf="manufacturer.id==0" class="btn btn-primary">
+<button (click)="addManufacturer()" *ngIf="manufacturer.id==0">
     Add
 </button>
-<button (click)="updateManufacturer()" *ngIf="manufacturer.id!=0" class="btn btn-primary">
+<button (click)="updateManufacturer()" *ngIf="manufacturer.id!=0">
     Update
 </button>

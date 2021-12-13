@@ -12,7 +12,7 @@
           <a class="headerLogin" id ="itemLogin"*ngIf="isUserAuthenticated == false" [routerLink]="['/authentication/login']" routerLinkActive="active" 
             [routerLinkActiveOptions]="{exact: true}">Login</a>
 
-          <a class="nav-link" id="itemLo" *ngIf="isUserAuthenticated" (click)="logout()" [routerLink]="['/authentication/login']"  [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" >Logout</a>
+          <a class="nav-link" id="itemLogout" *ngIf="isUserAuthenticated" (click)="logout()" [routerLink]="['/authentication/login']"  [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" >Logout</a>
         
   </div>
 </div>

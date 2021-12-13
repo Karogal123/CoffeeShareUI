@@ -16,7 +16,6 @@ export class AddEditCoffeeComponent implements OnInit {
   CoffeeBeansProcessing: string ="";
   CoffeeDegreeOfRoasting: string ="";
   CoffeeBeanType: string ="";
-  CoffeeImgUrl: string ="";
   CountryList: any[] = [];
   errorMessage: string ="";
   public showError!: boolean;
@@ -31,7 +30,6 @@ export class AddEditCoffeeComponent implements OnInit {
     this.CoffeeBeansProcessing = this.coffee.beansProcessing;
     this.CoffeeDegreeOfRoasting = this.coffee.degreeOfRoasting;
     this.CoffeeBeanType = this.coffee.beanType;
-    this.CoffeeImgUrl = this.coffee.imgUrl;
     this.getCountryList();
     this.getManufacturerList();
   }
@@ -44,8 +42,7 @@ export class AddEditCoffeeComponent implements OnInit {
       countryId:this.CoffeeCountryId,
       beansProcessing:this.CoffeeBeansProcessing,
       degreeOfRoasting:this.CoffeeDegreeOfRoasting,
-      beanType:this.CoffeeBeanType,
-      imgUrl:this.CoffeeImgUrl
+      beanType:this.CoffeeBeanType
     };
     console.log(this.CoffeeManufacturerId)
     this.service.createCoffee(val).subscribe(()=>{
@@ -66,8 +63,7 @@ export class AddEditCoffeeComponent implements OnInit {
       countryId:this.CoffeeCountryId,
       beansProcessing:this.CoffeeBeansProcessing,
       degreeOfRoasting:this.CoffeeDegreeOfRoasting,
-      beanType:this.CoffeeBeanType,
-      imgUrl:this.CoffeeImgUrl
+      beanType:this.CoffeeBeanType
     };
     this.service.updateCoffee(val).subscribe(()=>{
       alert("Successfully updated");

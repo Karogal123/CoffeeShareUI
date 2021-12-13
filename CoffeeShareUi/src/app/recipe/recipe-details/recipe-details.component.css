@@ -24,6 +24,16 @@ h4{
     font-size: 20px;
 }
 
+h5{
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    padding-top: 20px;
+    padding-left: 15px;
+    color: rgb(102, 102, 102);
+    font-weight: bold;
+  }
+
 .title{
     padding: 20px;
     padding-bottom: 40px;
@@ -90,8 +100,32 @@ h4{
 .steps{
     line-height: 30px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-size: 18px;
+}
+
+.buttons{
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 20px;
+}
+
+.buttonLeft{
+    display: block;
+    float: left;
+    width: 50%;
+}
+
+.buttonRight{
+    display: block;
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+.buttonDelete{
+    float: right;
 }
 
 #listDetails{
@@ -118,6 +152,11 @@ h4{
     grid-area: title; 
     vertical-align: top;
 }
+
+.buttonSend{
+    float: right;
+}
+
 
 .sendButton{
     padding-top: 5px;
@@ -146,6 +185,12 @@ h4{
     font-size:30px;
     color:rgb(122, 122, 122);
 }
+
+.buttonDeleteComment{
+    width: 100%;
+}
+
+
 
 i{
     font-style: normal;
@@ -176,13 +221,21 @@ i{
 
 
 button{
+    display: block;
+    border: none;
     background-color: #fff;
     border: solid rgb(250, 235, 208);
-    color: rgb(145, 145, 145);
+    color: rgb(145, 145, 145);	
+    border-radius: 8px;
+    text-align: center;
     font-size: 18px;
+    padding: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   
   button:hover{
+    outline: #6F4E37;
     background-color: #6F4E37;
     color: rgb(255, 255, 255);
     border: solid #6F4E37;
